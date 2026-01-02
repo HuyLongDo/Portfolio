@@ -8,6 +8,66 @@
     box-sizing: border-box;
 }
 
+/* --- Light Mode Styles --- */
+
+/* Style cho nút chuyển đổi theme */
+.theme_btn {
+    cursor: pointer;
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.theme_btn:hover {
+    transform: scale(1.1);
+}
+
+/* Định nghĩa màu sắc cho chế độ sáng */
+body.light-mode {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+/* Cập nhật nền và màu chữ cho các section chính */
+body.light-mode .home_section,
+body.light-mode .about_section,
+body.light-mode .projects_section,
+body.light-mode .contact_section,
+body.light-mode .footer {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+/* Đảm bảo văn bản trong các thẻ con cũng đổi màu */
+body.light-mode p,
+body.light-mode .hero_text,
+body.light-mode .sub_hero_text,
+body.light-mode .project_title,
+body.light-mode .footer_title,
+body.light-mode .skills span,
+body.light-mode .about_text {
+    color: #1a1a1a;
+}
+
+/* Đảo ngược màu cho các thành phần cụ thể nếu cần */
+body.light-mode .scroll_btn {
+    color: #1a1a1a;
+}
+
+/* About section: Giữ màu chữ trắng vì ảnh nền tối */
+body.light-mode .about_section,
+body.light-mode .about_section .about_text,
+body.light-mode .about_section span {
+    color: white;
+}
+/* Ending Light Mode Styles */
+
+
 body {
     font-family: "Poppins", sans-serif;
     background-color: black;
@@ -30,6 +90,16 @@ nav {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #ffffff, #ff8c00, #bbdd21ff, #ff76f4ff);
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+
+nav > * {
+    mix-blend-mode: difference;
+    color: #ffffff !important;
+    font-weight: 500;
 }
 
 .nav_contact_link {
@@ -38,12 +108,15 @@ nav {
     border: 1px solid white;
     border-radius: 20px;
     cursor: pointer;
-    transition: 0.3 ease;
+    transition: transform 0.3s ease;
+    background-color: transparent;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
 }
 
 .nav_contact_link:hover {
-    background-color: white;
-    color: black;
+    transform: scale(1.1);
 }
 
 .sub_hero_text {
@@ -253,4 +326,28 @@ nav {
 
 .footer div span:hover{
     text-decoration: underline;
+}
+
+/* --- Responsive Header --- */
+
+/* Tablet (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+    /* Ẩn phần mô tả vai trò dài dòng trên tablet */
+    .nav_role {
+        display: none;
+    }
+}
+
+/* Mobile (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    /* Ẩn thêm mục Project trên mobile, chỉ giữ lại Tên, Contact và Theme */
+    .nav_project {
+        display: none;
+    }
+    
+    .nav_contact_link {
+        height: auto;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
 }

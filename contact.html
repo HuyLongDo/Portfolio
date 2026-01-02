@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="contact_page_container">
+      <!-- Reuse Nav -->
+      <nav>
+        <a href="index.html" class="nav_name" style="text-decoration: none; color: inherit;"><span>Huy Long D</span></a>
+        <span class="nav_project">Project</span>
+        <span class="nav_role">
+          UX/UI Designer
+          <br />
+          Software Engineer
+        </span>
+        <!-- Nút Contact ở trang này có thể trỏ về chính nó hoặc ẩn đi, ở đây tôi giữ nguyên style -->
+        <button onclick="window.location.href='contact.html'" class="nav_contact_link" style="background-color: white; color: black;">Contact</button>
+        <button id="theme-toggle" class="theme_btn" aria-label="Toggle theme">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </nav>
+
+      <!-- Contact Form Content -->
+      <div class="contact_content">
+        <span class="project_title">Get in touch</span>
+        <form class="contact_form">
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email" required />
+            <textarea rows="5" placeholder="Message"></textarea>
+            
+            <!-- Reuse nav button style for submit but adjust slightly -->
+            <button type="submit" class="nav_contact_link" style="width: fit-content; background: transparent; color: inherit; margin-top: 20px;">
+                Send Message
+            </button>
+        </form>
+      </div>
+
+      <!-- Footer simple version -->
+      <div style="display: flex; justify-content: space-between; font-size: 0.8rem; opacity: 0.7;">
+        <span>&copy; 2025 Huy Long D</span>
+        <span>Designed with HTML & CSS</span>
+      </div>
+    </div>
+
+    <script>
+      // Theme toggle logic reused
+      const themeBtn = document.getElementById('theme-toggle');
+      themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+      });
+    </script>
+  </body>
+</html>

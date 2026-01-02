@@ -7,17 +7,10 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
+
+    <!-- Home section -->
     <div class="home_section">
-      <nav>
-        <span>Duy Thai</span>
-        <span>Project</span>
-        <Span>
-          UX/UI Designer
-          <br />
-          Software Engineer
-        </Span>
-        <span class="nav_contact_link">Contact</span>
-      </nav>
+      <div id="header-placeholder" style="width: 100%;"></div>
 
       <span class="sub_hero_text">
         <p>
@@ -37,7 +30,10 @@
       </span>
       <span class="scroll_btn">(Scroll to Explore)</span>
     </div>
+    <!-- End home section -->
 
+    
+    <!-- About section -->
     <div class="about_section">
       <img src="assets/img/background.jpg" />
       <span class="about_span">Who am I?</span>
@@ -70,6 +66,7 @@
       </div>
     </div>
 
+    <!-- Project section -->
     <div class="projects_section">
         <span class="project_title">My Projects</span>
         
@@ -99,7 +96,10 @@
         </div>
 
     </div>
+    <!-- End project section -->
 
+
+    <!-- Contact section -->
     <div class="contact_section">
         <span>Linked In.</span>
         <span>Facebook.</span>
@@ -107,28 +107,37 @@
         <span>XXX.</span>
         <span>Wanna work with me</span>
     </div>
+    <!-- End contact section  -->
 
 
-    <div class="footer">
-        <span class="footer_title">
-            Duy 
-            <br/>
-            Thai
-        </span>
-        <span class="footer_contact_link">Let's work together</span>
-        <div class="footer_nav">
-            <span>Home</span>
-            <span>About</span>
-            <span>Project</span>
-            <span>Contact</span>
-        </div>
+    <!-- Footer section --> 
+    <div id="footer-placeholder"></div>
+    <!-- End footer section -->
 
-        <div class="footer_nav">
-            <span>Linked In.</span>
-            <span>Facebook.</span>
-            <span>Instagram.</span>
-            <span>XXX.</span>
-        </div>
-    </div>
+    <script>
+      // Hàm tải component (header/footer)
+      function loadComponent(id, file) {
+        fetch(file)
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById(id).innerHTML = data;
+            
+            // Nếu là header thì kích hoạt lại sự kiện cho nút theme
+            if (id === 'header-placeholder') {
+                const themeBtn = document.getElementById('theme-toggle');
+                if(themeBtn) {
+                    themeBtn.addEventListener('click', () => {
+                        document.body.classList.toggle('light-mode');
+                    });
+                }
+            }
+          })
+          .catch(error => console.error('Error loading component:', error));
+      }
+
+      // Gọi hàm tải
+      loadComponent('header-placeholder', 'header.html');
+      loadComponent('footer-placeholder', 'footer.html');
+    </script>
   </body>
 </html>

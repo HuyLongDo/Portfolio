@@ -43,10 +43,10 @@ body.light-mode .footer {
     color: #1a1a1a;
 }
 
-/* Đảm bảo văn bản trong các thẻ con cũng đổi màu */
+/* các thẻ con đổi màu */
 body.light-mode p,
-body.light-mode .hero_text,
 body.light-mode .sub_hero_text,
+body.light-mode .hero_text,
 body.light-mode .project_title,
 body.light-mode .footer_title,
 body.light-mode .skills span,
@@ -83,15 +83,57 @@ body {
     justify-content: space-between;
     width: 100vw;
     height: 100vh;
-    padding: 2vh 2vw;
+    padding: 15vh 2vw 2vh 2vw; /* Tăng padding top để nội dung không bị header che mất */
 }
 
-nav {
+/* --- Rising Stripes (Snow) Effect --- */
+.music-waves {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.music-waves span {
+    position: absolute;
+    bottom: -100px;
+    width: 5px; /* Kẻ sọc mảnh */
+    animation: rise-animation 5s infinite linear;
+    opacity: 0;
+}
+
+/* Animation chuyển động từ dưới lên */
+@keyframes rise-animation {
+    0% { bottom: -10vh; opacity: 0; }
+    20% { opacity: 1; }
+    100% { bottom: 110vh; opacity: 0; }
+}
+
+/* Đảm bảo nội dung chính nằm đè lên trên hiệu ứng nền */
+.home_section > *:not(.music-waves) {
+    position: relative;
+    z-index: 2;
+}
+/* -------------------------- */
+
+nav {
+
+}
+
+.nav_container{
+    z-index: 99999;
+    position: fixed; /* Cố định header */
+    top: 20px;
+    left: 2vw;
+    right: 2vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(90deg, #ffffff, #ff8c00, #bbdd21ff, #ff76f4ff);
+    background: linear-gradient(90deg, #ffffff, #00fff2ff, #bbdd21ff, #ff76f4ff);
     padding: 10px 20px;
     border-radius: 50px;
 }
@@ -102,9 +144,32 @@ nav > * {
     font-weight: 500;
 }
 
+/* --- Nav Items Underline Effect --- */
+.nav_item {
+    position: relative;
+    cursor: pointer;
+}
+
+.nav_item::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0%; /* Mặc định nhỏ/ẩn */
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+}
+
+.nav_item:hover::after,
+.nav_item.active::after {
+    width: 100%; /* Hover hoặc Active thì to lên */
+}
+
 .nav_contact_link {
     height: 5vh;
-    padding: 0.75ch 1.5vw;
+    padding: 1px 2vw;
     border: 1px solid white;
     border-radius: 20px;
     cursor: pointer;
@@ -122,7 +187,7 @@ nav > * {
 .sub_hero_text {
     display: flex;
     justify-content: flex-end;
-    font-size: 1vw;
+    font-size: 16px; /* Desktop: Kích thước cố định */
     font-weight: 400;
 }
 
@@ -131,11 +196,37 @@ nav > * {
     margin-top: 5vh;
 }
 
+.hero_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 25vw;
+}
+
+.avatar_block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .hero_text {
     font-family: "Anton", sans-serif;
-    font-size: 12.5vw;
+    font-size: 50px;
     line-height: 1;
     text-transform: uppercase;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom:10px;
+}
+
+.hero_avatar {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    z-index: 2;
 }
 
 .scroll_btn {
@@ -336,6 +427,30 @@ nav > * {
     .nav_role {
         display: none;
     }
+    
+    .hero_container {
+        flex-direction: column-reverse; /* Đảo ngược: Chữ lên trên, Ảnh xuống dưới */
+        justify-content: center;
+        gap: 5vh;
+    }
+
+    /* Tablet: Giảm size chữ và mở rộng khung chứa */
+    .sub_hero_text {
+        font-size: 14px;
+    }
+    .sub_hero_text p {
+        width: 60vw;
+        text-align: center;
+    }
+
+    .hero_avatar {
+        width: 200px;
+        height: 200px;
+    }
+
+    .hero_text {
+        font-size: 80px;
+    }
 }
 
 /* Mobile (max-width: 768px) */
@@ -349,5 +464,23 @@ nav > * {
         height: auto;
         padding: 8px 16px;
         font-size: 0.9rem;
+    }
+
+    /* Mobile: Size chữ nhỏ hơn và khung chứa rộng gần hết màn hình */
+    .sub_hero_text {
+        font-size: 12px;
+    }
+    .sub_hero_text p {
+        width: 90vw;
+        text-align: center;
+    }
+
+    .hero_avatar {
+        width: 150px;
+        height: 150px;
+    }
+
+    .hero_text {
+        font-size: 60px;
     }
 }

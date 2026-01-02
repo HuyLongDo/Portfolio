@@ -8,26 +8,33 @@
   </head>
   <body>
 
+    <div id="header-placeholder"></div>
+
     <!-- Home section -->
     <div class="home_section">
-      <div id="header-placeholder" style="width: 100%;"></div>
+      <div class="music-waves">
+      </div>
 
-      <span class="sub_hero_text">
-        <p>
-          Step into the boundless realm of the digital landscape, where the
-          fusion of web development prowess and graphic design ingenuity crafts
-          immersive online journeys. With an unwavering dedication to innovation
-          and a penchant for redefining norms, I seamlesslyblend technical
-          acumen with creative flair, infusing each project with a distinctive
-          touch that captivates and inspires.
-        </p>
-      </span>
+      <div class="hero_container">
+        <div class="avatar_block">
+          <img src="assets/img/me.PNG" class="hero_avatar" alt="Avatar" />
+          <span class="hero_text">
+            Huy Long
+          </span>
+          <span>The Developer Front-end</span>
+        </div>
+        <span class="sub_hero_text">
+          <p>
+            Step into the boundless realm of the digital landscape, where the
+            fusion of web development prowess and graphic design ingenuity crafts
+            immersive online journeys. With an unwavering dedication to innovation
+            and a penchant for redefining norms, I seamlesslyblend technical
+            acumen with creative flair, infusing each project with a distinctive
+            touch that captivates and inspires.
+          </p>
+        </span>
+      </div>
 
-      <span class="hero_text">
-        website
-        <br />
-        developer
-      </span>
       <span class="scroll_btn">(Scroll to Explore)</span>
     </div>
     <!-- End home section -->
@@ -130,6 +137,17 @@
                         document.body.classList.toggle('light-mode');
                     });
                 }
+
+                // Xử lý active state cho nav items
+                const navItems = document.querySelectorAll('.nav_item');
+                navItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        // Bỏ active của tất cả các item khác
+                        navItems.forEach(nav => nav.classList.remove('active'));
+                        // Thêm active cho item vừa bấm
+                        this.classList.add('active');
+                    });
+                });
             }
           })
           .catch(error => console.error('Error loading component:', error));
@@ -138,6 +156,33 @@
       // Gọi hàm tải
       loadComponent('header-placeholder', 'header.html');
       loadComponent('footer-placeholder', 'footer.html');
+
+      // Tạo hiệu ứng kẻ sọc (Rising Stripes) bằng JS
+      const wavesContainer = document.querySelector('.music-waves');
+      if (wavesContainer) {
+        const stripeCount = 40; // Tăng số lượng sọc lên 40
+        const colors = ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#9400d3'];
+
+        for (let i = 0; i < stripeCount; i++) {
+          const span = document.createElement('span');
+          
+          // Random các thuộc tính
+          const left = Math.random() * 100; // Vị trí ngẫu nhiên 0-100%
+          const height = Math.random() * 20 + 10; // Giảm chiều dài: random từ 10vh đến 30vh
+          const duration = Math.random() * 3 + 2; // Tốc độ ngẫu nhiên (2s - 5s)
+          const delay = Math.random() * 5; // Độ trễ
+          const color = colors[Math.floor(Math.random() * colors.length)]; // Màu ngẫu nhiên
+
+          // Gán style inline
+          span.style.left = `${left}%`;
+          span.style.height = `${height}vh`;
+          span.style.animationDuration = `${duration}s`;
+          span.style.animationDelay = `${delay}s`;
+          span.style.background = `linear-gradient(to top, transparent, ${color}, transparent)`;
+
+          wavesContainer.appendChild(span);
+        }
+      }
     </script>
   </body>
 </html>

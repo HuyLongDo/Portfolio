@@ -19,23 +19,22 @@
         <div class="avatar_block">
           <img src="assets/img/me.PNG" class="hero_avatar" alt="Avatar" />
           <span class="hero_text">
-            Huy Long
+            Developer <br> Front-End
           </span>
-          <span>The Developer Front-end</span>
+          
         </div>
-        <span class="sub_hero_text">
-          <p>
-            Step into the boundless realm of the digital landscape, where the
-            fusion of web development prowess and graphic design ingenuity crafts
-            immersive online journeys. With an unwavering dedication to innovation
-            and a penchant for redefining norms, I seamlesslyblend technical
-            acumen with creative flair, infusing each project with a distinctive
-            touch that captivates and inspires.
-          </p>
-        </span>
+        <div class="sub_hero_text">
+          <div class="toggle_header">
+            <span>GIỚI THIỆU</span>
+            <div class="toggle_icon"></div>
+          </div>
+          <div class="toggle_content">
+            <p>Xin chào tôi tên là Huy Long, là 1 lập trình viên với hơn 2 năm kinh nghiệm trong mảng Front-end web, tôi tập trung vào việc xây dựng giao diện web tối ưu và thân thiện với người dùng. Với thế mạnh về reactjs, bên cạnh công việc chuyên môn, tôi luôn chủ động phát triển bản thân thông qua các dự án cá nhân đa dạng, không ngừng cập nhật các công nghệ mới nhất để biến những ý tưởng sáng tạo thành hiện thực.</p>
+          </div>
+        </div>
       </div>
 
-      <span class="scroll_btn">(Scroll to Explore)</span>
+      <span class="scroll_btn">(Cuộn để xem thêm)</span>
     </div>
     <!-- End home section -->
 
@@ -137,6 +136,25 @@
                         document.body.classList.toggle('light-mode');
                     });
                 }
+
+                // --- Thêm logic cho Hamburger Menu ---
+                const navContainer = document.querySelector('.nav_container');
+                if (navContainer) {
+                    // Tạo nút hamburger
+                    const hamburger = document.createElement('div');
+                    hamburger.className = 'hamburger';
+                    hamburger.innerHTML = '<span></span><span></span><span></span>';
+                    
+                    // Thêm vào nav_container
+                    navContainer.appendChild(hamburger);
+
+                    // Xử lý sự kiện click
+                    hamburger.addEventListener('click', function() {
+                        this.classList.toggle('active'); // Animation icon
+                        navContainer.classList.toggle('active'); // Mở/đóng menu
+                    });
+                }
+                // -------------------------------------
 
                 // Xử lý active state cho nav items
                 const navItems = document.querySelectorAll('.nav_item');

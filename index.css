@@ -65,6 +65,21 @@ body.light-mode .about_section .about_text,
 body.light-mode .about_section span {
     color: white;
 }
+
+/* Header Light Mode: Nền trắng, chữ đen */
+body.light-mode .nav_container {
+    background: linear-gradient(180deg, #ffffff, #e6e6e6);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+body.light-mode nav > * {
+    color: #000000 !important;
+    text-shadow: none;
+}
+
+body.light-mode .hamburger span {
+    background-color: #000000;
+}
 /* Ending Light Mode Styles */
 
 
@@ -72,7 +87,7 @@ body {
     font-family: "Poppins", sans-serif;
     background-color: black;
     color: white;
-    overflow-x: hidden;
+    min-width: 320px; /* Đặt độ rộng tối thiểu để tránh vỡ layout */
 }
 
 
@@ -81,7 +96,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     padding: 15vh 2vw 2vh 2vw; /* Tăng padding top để nội dung không bị header che mất */
 }
@@ -127,21 +142,55 @@ nav {
 .nav_container{
     z-index: 99999;
     position: fixed; /* Cố định header */
-    top: 20px;
-    left: 2vw;
-    right: 2vw;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-width: 320px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    background: linear-gradient(90deg, #ffffff, #00fff2ff, #bbdd21ff, #ff76f4ff);
-    padding: 10px 20px;
-    border-radius: 50px;
+    background: linear-gradient(180deg, #464545ff, #000000); /* Nền đen gradient */
+    padding: 15px 20px;
+    border-radius: 0 0 20px 20px;
+    gap: 80px; /* Tạo khoảng cách cố định giữa các item */
+    transition: all 0.3s ease; /* Hiệu ứng mượt khi mở menu */
 }
 
 nav > * {
-    mix-blend-mode: difference;
     color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Hiệu ứng chữ phát sáng */
     font-weight: 500;
+}
+
+/* --- Hamburger Menu Icon --- */
+.hamburger {
+    display: none; /* Ẩn trên Desktop */
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 100000;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    margin-left: 30px;
+}
+
+/* Animation: Chuyển 3 gạch thành dấu X */
+.hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 /* --- Nav Items Underline Effect --- */
@@ -168,6 +217,7 @@ nav > * {
 }
 
 .nav_contact_link {
+    margin-left: 90px;
     height: 5vh;
     padding: 1px 2vw;
     border: 1px solid white;
@@ -186,23 +236,126 @@ nav > * {
 
 .sub_hero_text {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column; /* Xếp dọc header và content */
+    justify-content: flex-start;
     font-size: 16px; /* Desktop: Kích thước cố định */
     font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.6;
+    
+    /* Style cho Toggle Button */
+    width: 40vw;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    border-radius: 15px;
+    padding: 15px 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden; /* Ẩn phần text khi đóng */
+}
+
+.sub_hero_text:hover {
+    /* background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 100%);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1); */
+}
+
+.toggle_header {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Animation cho mũi tên nhún nhảy */
+@keyframes arrow-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
+
+/* --- Animation Mũi tên thành dấu X --- */
+.toggle_icon {
+    position: relative;
+    width: 20px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.9s ease;
+    animation: arrow-bounce 1.5s infinite ease-in-out;
+}
+
+.toggle_icon::before,
+.toggle_icon::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 3px;
+    background-color: white;
+    transition: transform 0.4s ease, top 0.4s ease;
+}
+
+/* Trạng thái ban đầu: Mũi tên hướng xuống (V) */
+.toggle_icon::before {
+    transform: rotate(45deg);
+    top: 9px;
+    left: 0px;
+}
+
+.toggle_icon::after {
+    transform: rotate(-45deg);
+    top: 9px;
+    right: 0px;
+}
+
+/* Trạng thái Active: Dấu X */
+.sub_hero_text:hover .toggle_icon::before {
+    /* transform: rotate(45deg) translate(0, 0);
+    top: 9px;
+    left: 4px; */
+    transform: rotate(45deg);
+    top: 9px;
+    left: 0px;
+}
+
+.sub_hero_text:hover .toggle_icon::after {
+    /* transform: rotate(-45deg) translate(0, 0);
+    top: 9px;
+    right: 4px; */
+    transform: rotate(-45deg);
+    top: 9px;
+    right: 0px;
+}
+
+/*
+}
+
+/* --- Animation Nội dung --- */
+.toggle_content {
+    max-height: none;
+    opacity: 1;
+    margin-top: 15px;
+    overflow: visible;
 }
 
 .sub_hero_text p {
-    width: 35vw;
-    margin-top: 5vh;
+    width: 100%; /* Reset width cũ */
+    margin-top: 0; /* Reset margin cũ */
+    font-size: 0.95em;
 }
 
 .hero_container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     height: 100%;
-    gap: 25vw;
+    gap: 15vw;
 }
 
 .avatar_block {
@@ -237,7 +390,7 @@ nav > * {
 
 .about_section {
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -248,7 +401,7 @@ nav > * {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     object-fit: cover;
     filter: brightness(0.3);
@@ -295,7 +448,7 @@ nav > * {
 
 .projects_section{
     font-family: "Anton", sans-serif;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     padding: 5vh 2vw;
 }
@@ -344,7 +497,7 @@ nav > * {
 }
 
 .contact_section{
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     position: relative;
 }
@@ -389,7 +542,7 @@ nav > * {
 }
 
 .footer{
-    width: 100vw;
+    width: 100%;
     height: 40vh;
     padding: 0 10vw;
     display: grid;
@@ -424,22 +577,112 @@ nav > * {
 /* Tablet (max-width: 1024px) */
 @media screen and (max-width: 1024px) {
     /* Ẩn phần mô tả vai trò dài dòng trên tablet */
-    .nav_role {
-        display: none;
+    .nav_container {
+        margin-top: -20px;
+        padding: 40px 40px 10px 10px;
+        justify-content: space-between; /* Đẩy logo và hamburger ra 2 bên */
+        gap: 5px;
+        flex-wrap: wrap; /* Cho phép menu rớt dòng */
+    }
+
+    .hamburger {
+        display: flex; /* Hiện nút hamburger */
+        order: 10; /* Đảm bảo nằm cuối hàng trên */
+    }
+
+    /* Ẩn các item menu mặc định */
+    .nav_item, .nav_project {
+        display: block;
+        width: 100%; /* Chiếm hết dòng */
+        text-align: center;
+        order: 20; /* Đẩy xuống dưới */
+        margin: 0;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.5s ease;
+    }
+
+    /* Hiển thị nút liên hệ và theme ở hàng trên */
+    .nav_contact_link {
+        display: block;
+        margin-left: auto; /* Đẩy nhóm này sang phải */
+        order: 5;
     }
     
+    .theme_btn {
+        order: 6;
+    }
+
+    /* Bỏ hiệu ứng gạch chân (underline) khi hover ở chế độ tablet/mobile */
+    .nav_item::after {
+        display: none;
+    }
+
+    /* Khi menu mở (có class active) */
+    .nav_container.active {
+        /* flex-direction: column; -> Bỏ dòng này để giữ layout ngang */
+        padding-bottom: 10px;
+        background-image: linear-gradient(180deg, #2b2b2b, #000000); /* Đồng bộ màu header khi mở menu */
+        background-size: 100% 80px; /* Giữ màu cho thanh header phía trên */
+        background-repeat: no-repeat;
+        background-color: rgba(29, 29, 29, 0.9); /* Nền đen mờ cho phần menu bên dưới */
+        transition: all 0.5s ease; /* Hiệu ứng chuyển màu chậm hơn */
+    }
+
+    /* Light Mode cho menu responsive */
+    body.light-mode .nav_container.active {
+        background-image: linear-gradient(180deg, #ebe8e8ff, #dbdadaff);
+        background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    .nav_container.active .nav_item,
+    .nav_container.active .nav_project {
+        max-height: 100px; /* Đủ lớn để hiện nội dung */
+        opacity: 1;
+        margin: 10px 0;
+        padding-top: 10px;
+    }
+
+    .nav_container.active .nav_item:hover,
+    .nav_container.active .nav_project:hover {
+        transform: scale(1.2);
+    }
+
     .hero_container {
         flex-direction: column-reverse; /* Đảo ngược: Chữ lên trên, Ảnh xuống dưới */
-        justify-content: center;
+        justify-content: flex-end;
+        align-items: center;
         gap: 5vh;
     }
 
     /* Tablet: Giảm size chữ và mở rộng khung chứa */
     .sub_hero_text {
         font-size: 14px;
+        width: 90vw;
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: default;
+        backdrop-filter: none;
+    }
+
+    .sub_hero_text:hover {
+        background: transparent;
+        border: none;
+    }
+
+    .toggle_header {
+        display: none;
+    }
+
+    .toggle_content {
+        max-height: none;
+        opacity: 1;
+        margin-top: 0;
     }
     .sub_hero_text p {
-        width: 60vw;
+        width: 100%;
         text-align: center;
     }
 
@@ -455,10 +698,6 @@ nav > * {
 
 /* Mobile (max-width: 768px) */
 @media screen and (max-width: 768px) {
-    /* Ẩn thêm mục Project trên mobile, chỉ giữ lại Tên, Contact và Theme */
-    .nav_project {
-        display: none;
-    }
     
     .nav_contact_link {
         height: auto;
@@ -471,7 +710,7 @@ nav > * {
         font-size: 12px;
     }
     .sub_hero_text p {
-        width: 90vw;
+        width: 100%;
         text-align: center;
     }
 

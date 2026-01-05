@@ -589,45 +589,73 @@ nav > * {
     width: 100%;
     height: 100vh;
     position: relative;
+    overflow: hidden;
 }
 
-.contact_section span{
+.contact_card {
     position: absolute;
-    cursor: pointer;
-}
-
-.contact_section span:nth-child(1){
-    top: 20%;
-    left: 15%;
-}
-
-.contact_section span:nth-child(2){
-    top: 20%;
-    right: 15%;
-}
-
-.contact_section span:nth-child(3){
-    top: 75%;
-    left: 15%;
-}
-
-.contact_section span:nth-child(4){
-    top: 75%;
-    right: 15%;
-}
-
-.contact_section span:nth-child(5){
-    top: 50%;
-    right: 50%;
-    transform: translate(50%, -50%);
-    border: 1px solid white;
-    padding: 1vw 1.5vw;
+    width: 20vw; /* Kích thước theo chiều rộng màn hình */
+    height: 35vh; /* Kích thước theo chiều cao màn hình */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: transform 0.3s ease;
     border-radius: 20px;
 }
 
-.contact_section span:nth-child(5):hover{
-    background-color: white;
-    color: black;
+.contact_card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    filter: brightness(0.5); /* Làm tối ảnh để chữ dễ đọc */
+    transition: filter 0.3s ease;
+}
+
+.contact_card:hover img {
+    filter: brightness(0.3);
+}
+
+.contact_card span {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 1.5vw; /* Cỡ chữ tự động thu nhỏ theo màn hình */
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Định vị các thẻ */
+.card-1 { top: 10%; left: 10%; }
+.card-2 { top: 10%; right: 10%; }
+.card-3 { bottom: 10%; left: 10%; }
+.card-4 { bottom: 10%; right: 10%; }
+
+.card_center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    height: 40vh;
+    border-radius: 20px;
+}
+
+.card_center span {
+    font-size: 2vw;
+}
+
+.card_center:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.contact_card:not(.card_center):hover {
+    transform: scale(1.05);
 }
 
 .footer{
@@ -798,6 +826,7 @@ nav > * {
     .desktop_desc {
         display: none;
     }
+
 }
 
 /* Mobile (max-width: 768px) */
@@ -831,6 +860,7 @@ nav > * {
     .hero_text .glitch-word:nth-of-type(2) {
         margin-left: 20px; /* Mobile: Giảm thụt dòng tối đa */
     }
+
 }
 
 

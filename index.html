@@ -137,11 +137,26 @@
 
     <!-- Contact section -->
     <div class="contact_section">
-        <span>Linked In.</span>
-        <span>Facebook.</span>
-        <span>Instagram.</span>
-        <span>XXX.</span>
-        <span>Wanna work with me</span>
+        <div class="contact_card card-1">
+            <img src="assets/img/mechagirl.jpg" alt="Art" />
+            <span>Linked In.</span>
+        </div>
+        <div class="contact_card card-2">
+            <img src="assets/img/art2.jpg" alt="Art" />
+            <span>Facebook.</span>
+        </div>
+        <div class="contact_card card-3">
+            <img src="assets/img/art3.jpg" alt="Art" />
+            <span>Instagram.</span>
+        </div>
+        <div class="contact_card card-4">
+            <img src="assets/img/art4.jpg" alt="Art" />
+            <span>XXX.</span>
+        </div>
+        <div class="contact_card card_center">
+            <img src="assets/img/art6.jpg" alt="Art" />
+            <span>Contact me</span>
+        </div>
     </div>
     <!-- End contact section  -->
 
@@ -346,7 +361,7 @@
 
       if (homeSection && animatedElements.length > 0) {
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+            entries.forEach(entry => {  
                 if (entry.isIntersecting) {
                     // Khi home section xuất hiện -> Thêm class để chạy animation
                     animatedElements.forEach(el => el.classList.add('animate-active'));

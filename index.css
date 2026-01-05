@@ -1,6 +1,9 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
 * {
     margin: 0;
@@ -259,6 +262,10 @@ nav > * {
     overflow: hidden; /* Ẩn phần text khi đóng */
 }
 
+.mobile_desc {
+    display: none;
+}
+
 .sub_hero_text:hover {
     /* background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 100%);
     backdrop-filter: blur(5px);
@@ -353,6 +360,12 @@ nav > * {
     font-size: 0.95em;
 }
 
+.sub_hero_title{
+        text-shadow: 1px 1px 0px #ffffffff, -1px -1px 0px #00fff2ff;
+            font-family: 'Orbitron', sans-serif;
+                text-transform: uppercase;
+}
+
 .hero_container {
     display: flex;
     justify-content: center;
@@ -366,16 +379,46 @@ nav > * {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: 20px;
+    
 }
 
+/* .hero_line_container {
+    font-family: 'Orbitron', sans-serif; 
+    font-size: 70px;
+    text-transform: uppercase;
+    color: white;
+    text-shadow: 2px 2px 0px #00e6e6, -2px -2px 0px #ff0055;
+    
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    width: fit-content;     
+    margin: 0 auto;          
+}  */
+
 .hero_text {
-    font-family: "Anton", sans-serif;
-    font-size: 50px;
+    font-size: 60px;
     line-height: 1;
     text-transform: uppercase;
     text-align: center;
-    margin-top: 15px;
-    margin-bottom:10px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-family: 'Orbitron', sans-serif; /* Font Cyberpunk */
+    text-shadow: 2px 2px 0px #3aa9f3ff, -2px -2px 0px #00fff2ff;
+    color: white;
+    width: 550px;
+    white-space: nowrap;
+}
+
+.line-indent{
+    margin-left: 150px;
+    margin-top: 10px;
+}
+
+.glitch-word {
+    display: inline-block; /* Giúp text không bị vỡ layout khi animation */
+    min-width: 10px;       /* Tránh giật layout khi chữ biến mất */
 }
 
 .hero_info_column {
@@ -424,7 +467,9 @@ nav > * {
 
 .about_content{
     z-index: 1;
-    margin-bottom: -30vh;
+    margin: 30px 40px;
+    text-transform: uppercase;
+    font-size: 1.5vw;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -433,10 +478,24 @@ nav > * {
 }
 
 .about_topics{
+
     width: 95%;
     display: flex;
     gap: 4vw;
     text-transform: uppercase;
+}
+
+.about_topics span {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.5;
+}
+
+.about_topics span:hover,
+.about_topics span.active {
+    opacity: 1;
+    transform: scale(1.2);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .about_text{
@@ -702,7 +761,22 @@ nav > * {
     }
 
     .hero_text {
-        font-size: 80px;
+        font-size: 50px; /* Tablet: Giảm size chữ */
+        width: auto; /* Bỏ cố định chiều rộng */
+        text-align: center;
+    }
+
+    .hero_text .glitch-word:nth-of-type(2) {
+        margin-left: 40px; /* Tablet: Giảm thụt dòng */
+    }
+
+    .mobile_desc {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .desktop_desc {
+        display: none;
     }
 }
 
@@ -730,6 +804,11 @@ nav > * {
     }
 
     .hero_text {
-        font-size: 60px;
+        font-size: 30px; /* Mobile: Giảm size chữ nhỏ hơn */
+        width: auto;
+    }
+
+    .hero_text .glitch-word:nth-of-type(2) {
+        margin-left: 20px; /* Mobile: Giảm thụt dòng tối đa */
     }
 }

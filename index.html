@@ -6,7 +6,7 @@
     <title>My Portfolio</title>
     
     <!-- Config file -->
-    <link rel="stylesheet" href="index.css" />
+    <link href="./index.css" rel="stylesheet">
     
     <!-- Library -->
     <script src="https://cdn.jsdelivr.net/npm/motion@10.16.2/dist/motion.js"></script>
@@ -23,26 +23,35 @@
 
       <div class="hero_container">
         <div class="avatar_block">
+
           <img src="assets/img/me.PNG" class="hero_avatar" alt="Avatar" />
-          <span class="hero_text">
-            Developer <br> Front-End
-          </span>
+          <div class="hero_text">
+            
+            <span class="glitch-word" data-value="Developer">Developer</span>
+            <br>
+            <span class="glitch-word line-indent" data-value="Front-End">Front-End</span>
+          </div>
+
         </div>
         <div class="hero_info_column">
           <div class="sub_hero_text">
               <div class="toggle_header">
-                <span>GIỚI THIỆU</span>
+                <span class="sub_hero_title">GIỚI THIỆU</span>
                 <div class="toggle_icon"></div>
               </div>
               <div class="toggle_content">
                 <p>Xin chào tôi tên là Huy Long, là 1 lập trình viên với hơn 2 năm kinh nghiệm trong
                    mảng Front-end web, tôi tập trung vào việc xây dựng giao diện web tối ưu và thân 
                    thiện với người dùng. </p>
+                <p class="mobile_desc">Với thế mạnh về reactjs, bên cạnh công việc chuyên môn, 
+                   tôi luôn chủ động phát triển bản thân thông qua các dự án cá nhân đa dạng, 
+                   không ngừng cập nhật các công nghệ mới nhất để biến những ý tưởng sáng tạo 
+                   thành hiện thực.</p>
               </div>
           </div>
-          <div class="sub_hero_text">
+          <div class="sub_hero_text desktop_desc">
               <div class="toggle_header">
-                <span>ƯU ĐIỂM</span>
+                <span class="sub_hero_title">ƯU ĐIỂM</span>
                 <div class="toggle_icon"></div>
               </div>
               <div class="toggle_content">
@@ -54,7 +63,6 @@
           </div>
         </div>
       </div>
-
     </div>
     <!-- End home section -->
 
@@ -62,13 +70,15 @@
     <!-- About section -->
     <div class="about_section">
       <img src="assets/img/background.jpg" />
-      <span class="about_span">WHO AM I?</span>
+      
+      <!-- <span class="about_span">WHO AM I?</span> -->
+
       <div class="about_content">
         <div class="about_topics">
-          <span>About me</span>
-          <span>Skills</span>
+          <span id="tab-about" class="active">Về bản thân</span>
+          <span id="tab-skills">Kỹ năng</span>
         </div>
-        <div class="about_text">
+        <div id="about-text-content" class="about_text">
           Driven undergraduate software engineer seeking opportunities to apply
           my skills and passion for building innovative solutions. Eager to lean
           and contribute to a collaborative team environment. I'm particularly
@@ -79,7 +89,7 @@
         </div>
       </div>
 
-      <div class="skills">
+      <div id="skills-content" class="skills" style="display: none;">
         <span>Figma</span>
         <span>illustrator</span>
         <span>Webflow</span>
@@ -140,6 +150,7 @@
     <div id="footer-placeholder"></div>
     <!-- End footer section -->
 
+
     <script>
       // Hàm tải component (header/footer)
       function loadComponent(id, file) {
@@ -186,15 +197,60 @@
                         this.classList.add('active');
                     });
                 });
+
+                // Xử lý scroll cho các mục nav
+                const navAbout = document.getElementById('nav-about');
+                const navProject = document.getElementById('nav-project');
+                const navHome = document.getElementById('nav-home');
+                const navContact = document.getElementById('nav-contact');
+
+
+                if (navAbout) {
+                    navAbout.addEventListener('click', () => document.querySelector('.about_section').scrollIntoView({ behavior: 'smooth' }));
+                }
+                
+                if (navProject) {
+                    navProject.addEventListener('click', () => document.querySelector('.projects_section').scrollIntoView({ behavior: 'smooth' }));
+                }
+                
+                if (navHome) {
+                    navHome.addEventListener('click', () => document.querySelector('.home_section').scrollIntoView({ behavior: 'smooth' }));
+                }
+
+                if (navContact) {
+                    navContact.addEventListener('click', () => document.querySelector('.contact_section').scrollIntoView({ behavior: 'smooth' }));
+                }                
             }
           })
           .catch(error => console.error('Error loading component:', error));
+      }
+
+
+      // --- Logic cho Tab About/Skills ---
+      const tabAbout = document.getElementById('tab-about');
+      const tabSkills = document.getElementById('tab-skills');
+      const contentAbout = document.getElementById('about-text-content');
+      const contentSkills = document.getElementById('skills-content');
+      if (tabAbout && tabSkills && contentAbout && contentSkills) {
+        tabAbout.addEventListener('click', () => {
+            tabAbout.classList.add('active');
+            tabSkills.classList.remove('active');
+            contentAbout.style.display = 'block';
+            contentSkills.style.display = 'none';
+        });
+        tabSkills.addEventListener('click', () => {
+            tabSkills.classList.add('active');
+            tabAbout.classList.remove('active');
+            contentAbout.style.display = 'none';
+            contentSkills.style.display = 'flex';
+        });
       }
 
       // Gọi hàm tải
       loadComponent('header-placeholder', 'header.html');
       loadComponent('footer-placeholder', 'footer.html');
 
+      
       // Tạo hiệu ứng kẻ sọc (Rising Stripes) bằng JS
       const wavesContainer = document.querySelector('.music-waves');
       if (wavesContainer) {
@@ -221,6 +277,68 @@
           wavesContainer.appendChild(span);
         }
       }
+
+
+      // Effect font
+      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      const targetLetters = ['E', 'O', 'e', 'o'];
+      // Hàm chạy hiệu ứng cho 1 đối tượng cụ thể
+      const runHackerEffect = (element) => {
+        let iteration = 0;
+        const originalText = element.dataset.value; // Lấy chữ gốc từ data-value
+        
+        // Dừng interval cũ nếu đang chạy (để tránh lỗi khi rê chuột nhanh)
+        if (element.interval) clearInterval(element.interval);
+        
+        // Tạo mảng ký tự ngẫu nhiên cố định cho lần chạy này
+        const fixedChars = originalText.split("").map(() => letters[Math.floor(Math.random() * 36)]);
+
+        element.interval = setInterval(() => {
+          element.innerText = originalText
+            .split("")
+            .map((letter, index) => {
+              // Nếu ký tự không nằm trong danh sách targetLetters thì giữ nguyên (không glitch)
+              if (!targetLetters.includes(letter)) {
+                return letter;
+              }
+
+              if(index < iteration) {
+                return originalText[index];
+              }
+              return fixedChars[index];
+            })
+            .join("");
+          
+          if (element.isHovering) return;
+
+          if(iteration >= originalText.length){ 
+            clearInterval(element.interval);
+          }
+          
+          iteration += 1 / 3;
+        }, 30);
+      }
+
+      // Lấy danh sách các từ cần đổi hiệu ứng
+      const words = document.querySelectorAll(".glitch-word");
+
+      // 1. Chạy ngay khi load trang
+      words.forEach(word => runHackerEffect(word));
+
+      // 2. Chạy lại khi di chuột vào cả khối cha
+      const container = document.querySelector(".hero_text");
+      if (container) {
+        container.onmouseenter = () => {
+            words.forEach(word => {
+                word.isHovering = true;
+                runHackerEffect(word);
+            });
+        };
+        container.onmouseleave = () => {
+            words.forEach(word => word.isHovering = false);
+        };
+      }
+
     </script>
   </body>
 </html>

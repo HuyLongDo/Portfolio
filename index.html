@@ -339,6 +339,29 @@
         };
       }
 
+
+      // --- Lặp lại hiệu ứng scroll Animation Home Section ---
+      const homeSection = document.querySelector('.home_section');
+      const animatedElements = document.querySelectorAll('.hero_avatar, .hero_text, .sub_hero_text');
+
+      if (homeSection && animatedElements.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Khi home section xuất hiện -> Thêm class để chạy animation
+                    animatedElements.forEach(el => el.classList.add('animate-active'));
+                } else {
+                    // Khi home section biến mất -> Xóa class để reset animation
+                    animatedElements.forEach(el => el.classList.remove('animate-active'));
+                }
+            });
+        }, {
+            threshold: 0.1 // Kích hoạt khi thấy 10% home section
+        });
+
+        observer.observe(homeSection);
+      }
+
     </script>
   </body>
 </html>

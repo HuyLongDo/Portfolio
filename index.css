@@ -466,6 +466,7 @@ nav > * {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    margin-top:10px;
 }
 
 .about_section img{
@@ -493,6 +494,11 @@ nav > * {
     justify-content: space-between;
     align-items: center;
     gap: 5vh;
+    opacity: 0;
+}
+
+.about_content.animate-active {
+    animation: slideInLeft 1s ease-out forwards;
 }
 
 .about_topics{
@@ -520,6 +526,11 @@ nav > * {
     width: 95%;
 }
 
+// scroll slide about text
+.about_text.animate-active {
+    animation: slideInLeft 1s ease-out forwards;
+}
+
 .skills{
     z-index: 1;
     padding: 0 2.5%;
@@ -532,26 +543,32 @@ nav > * {
     gap: 2vh;
     overflow: hidden;
     margin-top: 5vh;
+    opacity: 0;
+}
+
+.skills.animate-active {
+    animation: slideInLeft 1s ease-out forwards;
 }
 
 .skills_list {
     display: flex;
     flex-wrap: nowrap; /* Desktop: Không xuống dòng */
-    gap: 4vw;
+    gap: 1.5vw;
     white-space: nowrap;
     overflow-x: auto; /* Cho phép cuộn ngang nếu cần thiết */
     scrollbar-width: none; /* Ẩn thanh cuộn cho đẹp */
 }
 
-.skill-item {
+.skill_item {
     cursor: pointer;
     transition: all 0.3s ease;
     opacity: 0.5; /* Mờ đi khi chưa active */
     white-space: nowrap;
+    margin-left: 20px;
 }
 
-.skill-item:hover,
-.skill-item.active {
+.skill_item:hover,
+.skill_item.active {
     opacity: 1;
     transform: scale(1.2); /* Phóng to khi hover hoặc active */
     /* text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); */
@@ -559,10 +576,15 @@ nav > * {
 
 .skill-description {
     font-family: "Poppins", sans-serif; /* Dùng font thường cho dễ đọc */
-    font-size: 1.2vw;
+    font-size: 1.5vw;
     text-transform: none;
     min-height: 3em; /* Giữ chiều cao cố định để tránh nhảy layout */
     color: inherit;
+    padding-left:20px;
+}
+
+.skill-text-anim {
+    animation: slideInLeft 0.5s ease-out forwards;
 }
 
 .projects_section{
@@ -576,6 +598,11 @@ nav > * {
 .project_title{
     font-size: 4vw;
     text-transform: uppercase;
+    opacity: 0;
+}
+
+.project_title.animate-slide-up {
+    animation: slideInUp 1s ease-out forwards;
 }
 
 .projects_container{
@@ -584,6 +611,12 @@ nav > * {
     display: grid;
     grid-template-columns: 35vw 1fr;
     grid-gap: 1vw;
+    opacity: 0;
+}
+
+.projects_container.animate-slide-up {
+    animation: slideInUp 1s ease-out forwards;
+    animation-delay: 0.3s;
 }
 
 .sub_container{
@@ -630,6 +663,7 @@ nav > * {
     flex: 1; /* Chia đều chiều rộng */
     height: 100%; /* Chiều cao bằng nhau và full màn hình */
     display: flex;
+    margin-top:20px;
     justify-content: center;
     align-items: center;
     overflow: hidden;
@@ -668,7 +702,7 @@ nav > * {
 
 /* Hiệu ứng hover: Thẻ được chọn sẽ to ra chiếm nhiều diện tích hơn */
 .contact_card:hover {
-    flex: 2;
+    flex: 1.4;
 }
 
 .contact_card span:hover {
@@ -684,6 +718,19 @@ nav > * {
     gap: 12.5vw;
     align-items: center;
     font-size: 1vw;
+}
+
+.footer_nav{
+    font-size: 1.2vw;
+    overflow: display;
+    white-space: nowrap;
+}
+
+.footer_contact_link{
+    font-size: 1.2vw;
+    overflow: display;
+    /* text-overflow: ellipsis; */
+    white-space: nowrap;
 }
 
 .footer_title{
@@ -993,6 +1040,18 @@ nav > * {
     }
     100% {
         transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Bay từ dưới lên */
+@keyframes slideInUp {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
         opacity: 1;
     }
 }

@@ -40,6 +40,7 @@ body.light-mode {
 body.light-mode .home_section,
 body.light-mode .about_section,
 body.light-mode .projects_section,
+body.light-mode .media_section,
 body.light-mode .contact_section,
 body.light-mode .footer {
     background-color: #ffffff;
@@ -51,6 +52,7 @@ body.light-mode p,
 body.light-mode .sub_hero_text,
 body.light-mode .hero_text,
 body.light-mode .project_title,
+body.light-mode .media_title,
 body.light-mode .footer_title,
 body.light-mode .skills span,
 body.light-mode .about_text {
@@ -62,12 +64,32 @@ body.light-mode .scroll_btn {
     color: #1a1a1a;
 }
 
+
+/* Home section: Giữ màu chữ trắng cho sub_hero_text vì ảnh nền tối */
+body.light-mode .sub_hero_text,
+body.light-mode .sub_hero_text p {
+    color: white;
+}
+
 /* About section: Giữ màu chữ trắng vì ảnh nền tối */
 body.light-mode .about_section,
 body.light-mode .about_section .about_text,
 body.light-mode .about_section span {
     color: white;
 }
+
+body.light-mode .skill_desc_hidden,
+body.light-mode .skill_description p {
+    color: white;
+}
+
+/* Media section: Giữ màu chữ trắng vì ảnh nền tối */
+body.light-mode .media_section,
+body.light-mode .media_section span {
+    color: white;
+}
+
+
 
 /* Header Light Mode: Nền trắng, chữ đen */
 body.light-mode .nav_container {
@@ -93,7 +115,6 @@ body {
     min-width: 320px; /* Đặt độ rộng tối thiểu để tránh vỡ layout */
 }
 
-
 .home_section {
     position: relative;
     display: flex;
@@ -103,7 +124,21 @@ body {
     height: 100vh;
     padding: 15vh 2vw 2vh 2vw; /* Tăng padding top để nội dung không bị header che mất */
     overflow-x: hidden; /* Ngăn thanh cuộn ngang xuất hiện khi các phần tử bay từ ngoài vào */
+    margin-top: 20px;
 }
+
+.home_bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(1.0); /* Làm tối ảnh nền để chữ nổi bật */
+    padding-top: 20px;
+}
+
 
 /* --- Rising Stripes (Snow) Effect --- */
 .music-waves {
@@ -125,15 +160,16 @@ body {
     opacity: 0;
 }
 
-/* Animation chuyển động từ dưới lên */
+/* Animation music chuyển động từ dưới lên */
 @keyframes rise-animation {
     0% { bottom: -10vh; opacity: 0; }
     20% { opacity: 1; }
     100% { bottom: 110vh; opacity: 0; }
 }
 
+
 /* Đảm bảo nội dung chính nằm đè lên trên hiệu ứng nền */
-.home_section > *:not(.music-waves) {
+.home_section > *:not(.music-waves):not(.home_bg) {
     position: relative;
     z-index: 2;
 }
@@ -228,7 +264,7 @@ nav > * {
     margin-left: 90px;
     height: 5vh;
     padding: 1px 2vw;
-    border: 1px solid white;
+    border: 2px solid gray;
     border-radius: 20px;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -431,12 +467,64 @@ nav > * {
 .glitch-word {
     display: inline-block; /* Giúp text không bị vỡ layout khi animation */
     min-width: 10px;       /* Tránh giật layout khi chữ biến mất */
+    position: relative;
 }
 
 .hero_info_column {
     display: flex;
     flex-direction: column;
     gap: 50px;
+}
+
+/* --- Hero Text Underline Effects --- */
+/* HUYLONG: Line from left, bend down-right */
+.hero_text .glitch-word:nth-of-type(1)::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 4px;
+    background-color: #3aa9f3;
+    box-shadow: 0 0 10px #3aa9f3;
+}
+
+.hero_text .glitch-word:nth-of-type(1)::after {
+    content: '';
+    position: absolute;
+    left: 100%;
+    bottom: -5px;
+    width: 30px;
+    height: 4px;
+    background-color: #3aa9f3;
+    box-shadow: 0 0 10px #3aa9f3;
+    transform-origin: left top;
+    transform: rotate(30deg);
+}
+
+/* Developer: Line from right, bend down-left */
+.hero_text .glitch-word:nth-of-type(2)::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 4px;
+    background-color: rgb(243, 126, 58);
+    box-shadow: 0 0 10px rgb(243, 126, 58);
+}
+
+.hero_text .glitch-word:nth-of-type(2)::after {
+    content: '';
+    position: absolute;
+    right: 100%;
+    bottom: -5px;
+    width: 30px;
+    height: 4px;
+    background-color: rgb(243, 126, 58);
+    box-shadow: 0 0 10px rgb(243, 126, 58);
+    transform-origin: right top;
+    transform: rotate(-30deg);
 }
 
 .hero_avatar {
@@ -466,7 +554,7 @@ nav > * {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-top:10px;
+
 }
 
 .about_section img{
@@ -477,6 +565,8 @@ nav > * {
     height: 100vh;
     object-fit: cover;
     filter: brightness(0.3);
+    padding-top: 30px;
+    overflow: visible;
 }
 
 .about_span{
@@ -486,7 +576,8 @@ nav > * {
 
 .about_content{
     z-index: 1;
-    margin: 30px 40px;
+    margin: 50px 40px;
+    padding-top:50px;
     text-transform: uppercase;
     font-size: 1.5vw;
     display: flex;
@@ -502,9 +593,9 @@ nav > * {
 }
 
 .about_topics{
-    width: 95%;
+    width: 93%;
     display: flex;
-    gap: 4vw;
+    gap: 40px;
     text-transform: uppercase;
 }
 
@@ -542,7 +633,7 @@ nav > * {
     flex-direction: column; /* Xếp dọc: List ở trên, Text ở dưới */
     gap: 2vh;
     overflow: hidden;
-    margin-top: 5vh;
+    /* margin-top: 5vh; */
     opacity: 0;
 }
 
@@ -574,7 +665,7 @@ nav > * {
     /* text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); */
 }
 
-.skill-description {
+.skill_description {
     font-family: "Poppins", sans-serif; /* Dùng font thường cho dễ đọc */
     font-size: 1.5vw;
     text-transform: none;
@@ -583,7 +674,7 @@ nav > * {
     padding-left:20px;
 }
 
-.skill-text-anim {
+.skill_text_anime {
     animation: slideInLeft 0.5s ease-out forwards;
 }
 
@@ -591,8 +682,8 @@ nav > * {
     font-family: "Anton", sans-serif;
     width: 100%;
     height: 100vh;
-    padding: 5vh 2vw;
-    margin-bottom: 5vh;
+    padding: 60px 2vw;
+    margin-bottom: 3vh;
 }
 
 .project_title{
@@ -647,6 +738,50 @@ nav > * {
     height: 100%;
     object-fit: cover;
     filter: brightness(0.5);
+}
+
+.media_section{
+    font-family: "Anton", sans-serif;
+    width: 100%;
+    height: 100vh;
+    padding: 2vw;
+    margin-bottom: 1px;
+    position: relative;
+}
+
+.media_bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    filter: brightness(1.0);
+    padding-top: 10px;
+    overflow: visible;
+}
+
+.media_title{
+    font-size: 4vw;
+    text-transform: uppercase;
+    opacity: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.media_title.animate-slide-up {
+    animation: slideInUp 1s ease-out forwards;
+}
+
+.media_container {
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+}
+
+.media_container.animate-slide-up {
+    animation: slideInUp 1s ease-out forwards;
+    animation-delay: 0.3s;
 }
 
 .contact_section{
@@ -805,10 +940,10 @@ nav > * {
         /* flex-direction: column; -> Bỏ dòng này để giữ layout ngang */
         padding-bottom: 10px;
         background-image: linear-gradient(180deg, #2b2b2b, #000000); /* Đồng bộ màu header khi mở menu */
-        background-size: 100% 80px; /* Giữ màu cho thanh header phía trên */
+        background-size: 100% 80px; 
         background-repeat: no-repeat;
-        background-color: rgba(29, 29, 29, 0.9); /* Nền đen mờ cho phần menu bên dưới */
-        transition: all 0.5s ease; /* Hiệu ứng chuyển màu chậm hơn */
+        background-color: rgba(29, 29, 29, 0.9); 
+        transition: all 0.5s ease; 
     }
 
     /* Light Mode cho menu responsive */
@@ -831,7 +966,13 @@ nav > * {
     }
 
     .home_section{
-        height: 800px;
+        height: 900px;
+    }
+
+    .home_bg{
+        height: 100%;
+        padding-top: 70px;
+
     }
 
     .hero_container {
@@ -906,6 +1047,7 @@ nav > * {
 
     .about_section img {
         height: 100%; /* Ảnh nền bám theo chiều cao section */
+        padding-top: 0px;
     }
 
     .about_content {
@@ -926,14 +1068,55 @@ nav > * {
         flex-wrap: wrap; /* Tablet: Xuống dòng bình thường */
     }
 
-    .skill-description {
+    .skill_description {
         font-size: 18px;
         text-align: center;
     }
 
-    .contact_section {
-        height: 70vh;
+    .projects_section{
+        padding: 20px 2vw;
+        margin-bottom: 2vh;
     }
+
+    .media_section {
+        height: auto;
+        padding-top: 30px;
+        min-height: 60vh;
+        margin-bottom: -10px;
+    }
+
+    .media_bg {
+        height: 100%;
+        padding-top: 30px;
+    }
+
+    .media_container {
+        font-size: 18px; /* Set cứng size chữ */
+        margin: 20px;
+    }
+
+    .media_text {
+        font-size: 16px;
+    }
+
+    .contact_section {
+        height: 80vh;
+    }
+
+    .footer{
+        height: 20vh;
+        padding: 0 10vw;
+    }
+
+    .footer_contact_link{
+        font-size: 16px;
+    }
+
+    .footer_nav{
+        font-size: 16px;
+        padding-left:20px;
+    }
+
 }
 
 /* Mobile (max-width: 768px) */
@@ -947,6 +1130,14 @@ nav > * {
 
     .home_section{
         height: 80vh;
+    }
+
+    .home_bg{
+        height: 100%;
+        width: auto;
+    }
+
+    .hero_container {
     }
 
     /* Mobile: Size chữ nhỏ hơn và khung chứa rộng gần hết màn hình */
@@ -977,6 +1168,18 @@ nav > * {
         margin-left: 20px; /* Mobile: Giảm thụt dòng tối đa */
     }
 
+    /* Thu nhỏ đường kẻ trang trí trên mobile */
+    .hero_text .glitch-word:nth-of-type(1)::before,
+    .hero_text .glitch-word:nth-of-type(1)::after,
+    .hero_text .glitch-word:nth-of-type(2)::before,
+    .hero_text .glitch-word:nth-of-type(2)::after {
+        height: 2px;
+        bottom: -3px;
+    }
+    .hero_text .glitch-word:nth-of-type(1)::after,
+    .hero_text .glitch-word:nth-of-type(2)::after {
+        width: 15px;
+    }
     
     .about_section {
         height: auto; /* Chiều cao tự động theo nội dung */
@@ -986,6 +1189,7 @@ nav > * {
 
     .about_section img {
         height: 100%;
+        padding-top: 0px;
     }
 
     .about_content {
@@ -1007,14 +1211,54 @@ nav > * {
         flex-wrap: wrap; /* Mobile: Xuống dòng bình thường */
     }
 
-    .skill-description {
+    .skill_description {
         font-size: 14px;
         text-align: center;
     }
+    
+    .projects_section{
+        padding: 20px 2vw;
+        margin-bottom: 2vh;
+    }
+
+    .media_section {
+        height: auto; /* Chiều cao tự động theo nội dung */
+        min-height: 60vh;
+        margin-bottom: -10px;
+    }
+
+    .media_bg  {
+        height: 100%;
+        padding-top: 0px;
+    }
+
+    .media_container {
+        font-size: 16px;
+        margin: 15px;
+    }
+
+    .media_text {
+        font-size: 14px;
+    }
 
     .contact_section {
-        height: 60vh;
+        height: 50vh;
     }
+    
+    .footer{
+        height: 20vh;
+        padding: 0 10vw;
+    }
+
+    .footer_contact_link{
+        font-size: 9px;
+    }
+
+    .footer_nav{
+        font-size: 9px;
+        padding-left:20px;
+    }
+    
 
 }
 

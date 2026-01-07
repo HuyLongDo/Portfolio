@@ -117,10 +117,10 @@
             const desc = skillItems[index].querySelector('.skill_desc_hidden').innerText;
             
             // Reset và chạy animation cho text mô tả
-            skillText.classList.remove('skill-text-anim');
+            skillText.classList.remove('skill_text_anime');
             void skillText.offsetWidth; // Trigger reflow
             skillText.innerText = desc;
-            skillText.classList.add('skill-text-anim');
+            skillText.classList.add('skill_text_anime');
         };
 
         skillItems.forEach((item, index) => {
@@ -269,11 +269,46 @@
         aboutObserver.observe(aboutSection);
       }
 
+    // --- Hiệu ứng scroll slide Animation Project Section ---
+      const projectSection = document.querySelector('.projects_section');
+      const projectAnimatedElements = document.querySelectorAll('.project_title, .projects_container');
+
+      if (projectSection && projectAnimatedElements.length > 0) {
+        const projectObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    projectAnimatedElements.forEach(el => el.classList.add('animate-slide-up'));
+                } else {
+                    projectAnimatedElements.forEach(el => el.classList.remove('animate-slide-up'));
+                }
+            });
+        }, { threshold: 0.1 });
+
+        projectObserver.observe(projectSection);
+      }
+
+      // --- Hiệu ứng scroll slide Animation Media Section ---
+      const mediaSection = document.querySelector('.media_section');
+      const mediaAnimatedElements = document.querySelectorAll('.media_title, .media_container');
+
+      if (mediaSection && mediaAnimatedElements.length > 0) {
+        const mediaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    mediaAnimatedElements.forEach(el => el.classList.add('animate-slide-up'));
+                } else {
+                    mediaAnimatedElements.forEach(el => el.classList.remove('animate-slide-up'));
+                }
+            });
+        }, { threshold: 0.1 });
+
+        mediaObserver.observe(mediaSection);
+      }
 
       // --- Scroll Arrow Logic ---
       const scrollArrowContainer = document.getElementById('scroll-arrow-container');
       const footerPlaceholder = document.getElementById('footer-placeholder');
-      const sections = document.querySelectorAll('.home_section, .about_section, .projects_section, .contact_section');
+      const sections = document.querySelectorAll('.home_section, .about_section, .projects_section, .media_section, .contact_section');
       let currentSectionIndex = 0;
 
     if (scrollArrowContainer && sections.length > 0 && footerPlaceholder) {

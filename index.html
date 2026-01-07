@@ -20,6 +20,7 @@
 
     <!-- Home section -->
     <div class="home_section">
+      <img src="assets/img/audio_bg.png" class="home_bg" alt="Home Background" />
       <div class="music-waves">
       </div>
 
@@ -28,10 +29,10 @@
 
           <img src="assets/img/me.PNG" class="hero_avatar" alt="Avatar" />
           <div class="hero_text">
-            <span class="glitch-word" data-value="Hi, I'm Long">Hi, Im Long</span>
+            <span class="glitch-word" data-value="HUYLONG">HUYLONG</span>
             <br>
             <span style="text-shadow: 2px 2px 0px rgb(243, 126, 58), 
-            -2px -2px 0px rgb(255, 60, 0);padding-top: 10px; " 
+            -2px -2px 0px rgb(255, 60, 0);padding-top: 20px; " 
             class="glitch-word line-indent " data-value="Developer">Developer</span>
           </div>
           <!-- <div class="hero_sub_text"><span class="font-weight: bold;"><i>Developer</i></span></div> -->
@@ -87,7 +88,7 @@
           Mình đã tốt nghiệp ngành công nghệ thông tin <br>
           Trường Đại học <b>công nghệ Sài Gòn</b> STU
           <b>2019 - 2024</b> <br> <br>
-          Hiện tại đang sinh sống ở Sài Gòn, trải qua nhiều nơi, tiếp xúc nhiều môi trường công việc, mình <br> luôn học tập và làm việc theo nguyên tắc tôn 
+          Hiện tại đang sinh sống ở <b>Sài Gòn</b>, trải qua nhiều nơi, tiếp xúc nhiều môi trường công việc, mình <br> luôn học tập và làm việc theo nguyên tắc tôn 
           trọng đối phương, thấu hiểu đồng nghiệp và <br> đối tác. Mình luôn cầu tiến trong công việc,
           học hỏi những điều mới để đáp ứng nhanh, hy vọng <br> có thể hợp tác lâu dài để phát triển bản thân và doanh nghiệp. <br> <br>
           <b>Mục tiêu nghề nghiệp: </b> <br>
@@ -135,7 +136,7 @@
               <span class="skill_desc_hidden" style="display:none">Quản trị cơ sở dữ liệu quan hệ, tối ưu truy vấn dữ liệu.</span>
             </span>
         </div>
-        <div class="skill-description">
+        <div class="skill_description">
             <p id="skill-text"></p>
         </div>
       </div>
@@ -174,6 +175,17 @@
     <!-- End project section -->
 
 
+    <!-- Media section -->
+    <div class="media_section">
+        <img src="assets/img/audio_bg_2.png" class="media_bg" alt="Media Background" />
+        <span class="media_title">Honor</span>
+        <div class="media_container">
+          <div class="media_text">ABC</div>
+        </div>
+    </div>
+    <!-- End media section -->
+
+
     <!-- Contact section -->
     <div class="contact_section">
         <div class="contact_card card-1">
@@ -206,23 +218,7 @@
     <!-- End footer section -->
 
     <script>
-      // --- Hiệu ứng scroll slide Animation Project Section ---
-      const projectSection = document.querySelector('.projects_section');
-      const projectAnimatedElements = document.querySelectorAll('.project_title, .projects_container');
 
-      if (projectSection && projectAnimatedElements.length > 0) {
-        const projectObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    projectAnimatedElements.forEach(el => el.classList.add('animate-slide-up'));
-                } else {
-                    projectAnimatedElements.forEach(el => el.classList.remove('animate-slide-up'));
-                }
-            });
-        }, { threshold: 0.1 });
-
-        projectObserver.observe(projectSection);
-      }
     </script>
 
     <script src="./index.js"></script>

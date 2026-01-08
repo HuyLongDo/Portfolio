@@ -16,7 +16,7 @@
   </head>
   <body>
 
-    <div id="header-placeholder"></div>
+    <div id="header_placeholder"></div>
 
     <!-- Home section -->
     <div class="home_section">
@@ -29,11 +29,11 @@
 
           <img src="assets/img/me.PNG" class="hero_avatar" alt="Avatar" />
           <div class="hero_text">
-            <span class="glitch-word" data-value="HUYLONG">HUYLONG</span>
+            <span class="glitch_word" data-value="HUYLONG">HUYLONG</span>
             <br>
             <span style="text-shadow: 2px 2px 0px rgb(243, 126, 58), 
             -2px -2px 0px rgb(255, 60, 0);padding-top: 20px; " 
-            class="glitch-word line-indent " data-value="Developer">Developer</span>
+            class="glitch_word line_indent " data-value="Developer">Developer</span>
           </div>
           <!-- <div class="hero_sub_text"><span class="font-weight: bold;"><i>Developer</i></span></div> -->
 
@@ -68,7 +68,7 @@
           </div>
         </div>
       </div>
-      <div id="scroll-arrow-container">
+      <div id="scroll_arrow_container">
         <img src="assets/img/downarrow.png" alt="Scroll Down" />
       </div>
     </div>
@@ -81,10 +81,10 @@
       <!-- <span class="about_span">WHO AM I?</span> -->
       <div class="about_content">
         <div class="about_topics">
-          <span id="tab-about" class="active"><strong>Về bản thân</strong></span>
-          <span id="tab-skills"><strong>Kỹ năng</strong></span>
+          <span id="tab_about" class="active"><strong>Bản thân</strong></span>
+          <span id="tab_skills"><strong>Kiến thức</strong></span>
         </div>
-        <div id="about-text-content" class="about_text">
+        <div id="about_text_content" class="about_text">
           Mình đã tốt nghiệp ngành công nghệ thông tin <br>
           Trường Đại học <b>công nghệ Sài Gòn</b> STU
           <b>2019 - 2024</b> <br> <br>
@@ -97,7 +97,7 @@
         </div>
       </div>
 
-      <div id="skills-content" class="skills" style="display: none;">
+      <div id="skills_content" class="skills" style="display: none;">
         <div class="skills_list">
             <span class="skill_item">
               ReactJS
@@ -137,7 +137,7 @@
             </span>
         </div>
         <div class="skill_description">
-            <p id="skill-text"></p>
+            <p id="skill_text"></p>
         </div>
       </div>
     </div>
@@ -178,7 +178,7 @@
     <!-- Media section -->
     <div class="media_section">
         <img src="assets/img/audio_bg_2.png" class="media_bg" alt="Media Background" />
-        <span class="media_title">Honor</span>
+        <span class="media_title">Achievements</span>
         <div class="media_container">
           <div class="media_text">ABC</div>
         </div>
@@ -186,27 +186,93 @@
     <!-- End media section -->
 
 
+    <!-- Audio section -->
+    <div class="media_section">
+        <img src="assets/img/audio_bg.png" class="media_bg" alt="Media Background" />
+        <span class="media_title">File</span>
+        <div class="media_container">
+          <div class="media_text">ABC</div>
+        </div>
+    </div>
+    <!-- End audio section -->
+
+
     <!-- Contact section -->
     <div class="contact_section">
-        <div class="contact_card card-1">
-            <img src="assets/img/mechagirl.jpg" alt="Art" />
-            <span>Linked In.</span>
+        <div class="contact_card card_1">
+            <div class="flip_inner">
+                <div class="flip_front">
+                    <img src="assets/img/mechagirl.jpg" alt="Art" />
+                    <span>Linked In.</span>
+                </div>
+                <div class="flip_back">
+                    <img src="assets/img/mechagirl.jpg" alt="Art" style="filter: brightness(0.2);" />
+                    <span class="social_link" 
+                      data-type="social" 
+                      data-platform="linkedin" 
+                      data-id="huylong-d-7602782b5">huylong-d-7602782b5.</span>
+                </div>
+            </div>
         </div>
-        <div class="contact_card card-2">
-            <img src="assets/img/art2.jpg" alt="Art" />
-            <span>Facebook.</span>
+        <div class="contact_card card_2">
+            <div class="flip_inner">
+                <div class="flip_front">
+                    <img src="assets/img/art2.jpg" alt="Art" />
+                    <span>Discord.</span>
+                </div>
+                <div class="flip_back">
+                    <img src="assets/img/art2.jpg" alt="Art" style="filter: brightness(0.2);" />
+                    <span class="social_link" 
+                    data-type="discord"
+                    data-id="589280544273989646">PentoSan.</span>
+                </div>
+            </div>
         </div>
-            <div class="contact_card card_center">
-            <img src="assets/img/art6.jpg" alt="Art" />
-            <span>Contact me <br> My info</span>
+        <div class="contact_card card_center" id="flip_card">
+            <div class="flip_inner">
+                <div class="flip_front">
+                    <img src="assets/img/art6.jpg" alt="Art" />
+                    <span>Contact me <br> My info</span>
+                </div>
+                <div class="flip_back">
+                    <img src="assets/img/art6.jpg" alt="Art" style="filter: brightness(0.2);" />
+                    <span class="social_link" 
+                    data-type="mail" 
+                    data-id="dohlong1029" 
+                    data-domain="gmail.com"
+                    style="font-size: 1.5vw;">dohlong1029 <br>@gmail</span>
+                </div>
+            </div>
         </div>
-        <div class="contact_card card-3">
-            <img src="assets/img/art3.jpg" alt="Art" />
-            <span>Instagram.</span>
+        <div class="contact_card card_3">
+            <div class="flip_inner">
+                <div class="flip_front">
+                    <img src="assets/img/art3.jpg" alt="Art" />
+                    <span>Instagram.</span>
+                </div>
+                <div class="flip_back">
+                    <img src="assets/img/art3.jpg" alt="Art" style="filter: brightness(0.2);" />
+                    <span class="social_link" 
+                    data-type="social" 
+                    data-platform="instagram" 
+                    data-id="pentosan77">pentosan77.</span>
+                </div>
+            </div>
         </div>
-        <div class="contact_card card-4">
-            <img src="assets/img/art4.jpg" alt="Art" />
-            <span>GitHub.</span>
+        <div class="contact_card card_4">
+            <div class="flip_inner">
+                <div class="flip_front">
+                    <img src="assets/img/art4.jpg" alt="Art" />
+                    <span>GitHub.</span>
+                </div>
+                <div class="flip_back">
+                    <img src="assets/img/art4.jpg" alt="Art" style="filter: brightness(0.2);" />
+                    <span class="social_link" 
+                    data-type="social" 
+                    data-platform="github" 
+                    data-id="HuyLongDo">HuyLongDo.</span>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -214,7 +280,7 @@
 
 
     <!-- Footer section --> 
-    <div id="footer-placeholder"></div>
+    <div id="footer_placeholder"></div>
     <!-- End footer section -->
 
     <script>

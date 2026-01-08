@@ -5,6 +5,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Luckiest+Guy&family=Unlock&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -31,78 +35,78 @@
 }
 
 /* Định nghĩa màu sắc cho chế độ sáng */
-body.light-mode {
+body.light_mode {
     background-color: #ffffff;
     color: #1a1a1a;
 }
 
 /* Cập nhật nền và màu chữ cho các section chính */
-body.light-mode .home_section,
-body.light-mode .about_section,
-body.light-mode .projects_section,
-body.light-mode .media_section,
-body.light-mode .contact_section,
-body.light-mode .footer {
+body.light_mode .home_section,
+body.light_mode .about_section,
+body.light_mode .projects_section,
+body.light_mode .media_section,
+body.light_mode .contact_section,
+body.light_mode .footer {
     background-color: #ffffff;
     color: #1a1a1a;
 }
 
 /* các thẻ con đổi màu */
-body.light-mode p,
-body.light-mode .sub_hero_text,
-body.light-mode .hero_text,
-body.light-mode .project_title,
-body.light-mode .media_title,
-body.light-mode .footer_title,
-body.light-mode .skills span,
-body.light-mode .about_text {
+body.light_mode p,
+body.light_mode .sub_hero_text,
+body.light_mode .hero_text,
+body.light_mode .project_title,
+body.light_mode .media_title,
+body.light_mode .footer_title,
+body.light_mode .skills span,
+body.light_mode .about_text {
     color: #1a1a1a;
 }
 
 /* Đảo ngược màu cho các thành phần cụ thể nếu cần */
-body.light-mode .scroll_btn {
+body.light_mode .scroll_btn {
     color: #1a1a1a;
 }
 
 
 /* Home section: Giữ màu chữ trắng cho sub_hero_text vì ảnh nền tối */
-body.light-mode .sub_hero_text,
-body.light-mode .sub_hero_text p {
+body.light_mode .sub_hero_text,
+body.light_mode .sub_hero_text p {
     color: white;
 }
 
 /* About section: Giữ màu chữ trắng vì ảnh nền tối */
-body.light-mode .about_section,
-body.light-mode .about_section .about_text,
-body.light-mode .about_section span {
+body.light_mode .about_section,
+body.light_mode .about_section .about_text,
+body.light_mode .about_section span {
     color: white;
 }
 
-body.light-mode .skill_desc_hidden,
-body.light-mode .skill_description p {
+body.light_mode .skill_desc_hidden,
+body.light_mode .skill_description p {
     color: white;
 }
 
 /* Media section: Giữ màu chữ trắng vì ảnh nền tối */
-body.light-mode .media_section,
-body.light-mode .media_section span {
+body.light_mode .media_section,
+body.light_mode .media_section span {
     color: white;
 }
 
 
 
 /* Header Light Mode: Nền trắng, chữ đen */
-body.light-mode .nav_container {
+body.light_mode .nav_container {
     background: linear-gradient(180deg, #ffffff, #e6e6e6);
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
-body.light-mode nav > * {
+body.light_mode nav > * {
     color: #000000 !important;
     text-shadow: none;
 }
 
-body.light-mode .hamburger span {
+body.light_mode .hamburger span {
     background-color: #000000;
 }
 /* Ending Light Mode Styles */
@@ -300,7 +304,7 @@ nav > * {
     opacity: 0; /* Ẩn ban đầu để chờ animation */
 }
 
-.sub_hero_text.animate-active {
+.sub_hero_text.animate_active {
     animation: slideInRight 1s ease-out forwards;
 }
 
@@ -454,17 +458,16 @@ nav > * {
     opacity: 0;
 }
 
-.hero_text.animate-active {
+.hero_text.animate_active {
     animation: slideInLeft 1s ease-out forwards;
     animation-delay: 0.3s;
 }
 
-.line-indent{
+.line_indent{
     margin-left: 200px;
     margin-top: 10px;
 }
-
-.glitch-word {
+.glitch_word {
     display: inline-block; /* Giúp text không bị vỡ layout khi animation */
     min-width: 10px;       /* Tránh giật layout khi chữ biến mất */
     position: relative;
@@ -478,7 +481,7 @@ nav > * {
 
 /* --- Hero Text Underline Effects --- */
 /* HUYLONG: Line from left, bend down-right */
-.hero_text .glitch-word:nth-of-type(1)::before {
+.hero_text .glitch_word:nth-of-type(1)::before {
     content: '';
     position: absolute;
     left: 0;
@@ -489,7 +492,7 @@ nav > * {
     box-shadow: 0 0 10px #3aa9f3;
 }
 
-.hero_text .glitch-word:nth-of-type(1)::after {
+.hero_text .glitch_word:nth-of-type(1)::after {
     content: '';
     position: absolute;
     left: 100%;
@@ -503,7 +506,7 @@ nav > * {
 }
 
 /* Developer: Line from right, bend down-left */
-.hero_text .glitch-word:nth-of-type(2)::before {
+.hero_text .glitch_word:nth-of-type(2)::before {
     content: '';
     position: absolute;
     right: 0;
@@ -514,7 +517,7 @@ nav > * {
     box-shadow: 0 0 10px rgb(243, 126, 58);
 }
 
-.hero_text .glitch-word:nth-of-type(2)::after {
+.hero_text .glitch_word:nth-of-type(2)::after {
     content: '';
     position: absolute;
     right: 100%;
@@ -537,7 +540,7 @@ nav > * {
     opacity: 0;
 }
 
-.hero_avatar.animate-active {
+.hero_avatar.animate_active {
     animation: slideInLeft 1s ease-out forwards;
 }
 
@@ -565,8 +568,8 @@ nav > * {
     height: 100vh;
     object-fit: cover;
     filter: brightness(0.3);
-    padding-top: 30px;
-    overflow: visible;
+    /* padding-top: 30px; */
+
 }
 
 .about_span{
@@ -588,7 +591,7 @@ nav > * {
     opacity: 0;
 }
 
-.about_content.animate-active {
+.about_content.animate_active {
     animation: slideInLeft 1s ease-out forwards;
 }
 
@@ -618,7 +621,7 @@ nav > * {
 }
 
 // scroll slide about text
-.about_text.animate-active {
+.about_text.animate_active {
     animation: slideInLeft 1s ease-out forwards;
 }
 
@@ -637,7 +640,7 @@ nav > * {
     opacity: 0;
 }
 
-.skills.animate-active {
+.skills.animate_active {
     animation: slideInLeft 1s ease-out forwards;
 }
 
@@ -682,8 +685,9 @@ nav > * {
     font-family: "Anton", sans-serif;
     width: 100%;
     height: 100vh;
-    padding: 60px 2vw;
-    margin-bottom: 3vh;
+    padding: 20px 2vw 70px;
+    margin-bottom: 40px;
+    overflow: hidden;
 }
 
 .project_title{
@@ -692,7 +696,7 @@ nav > * {
     opacity: 0;
 }
 
-.project_title.animate-slide-up {
+.project_title.animate_slide_up {
     animation: slideInUp 1s ease-out forwards;
 }
 
@@ -705,7 +709,7 @@ nav > * {
     opacity: 0;
 }
 
-.projects_container.animate-slide-up {
+.projects_container.animate_slide_up {
     animation: slideInUp 1s ease-out forwards;
     animation-delay: 0.3s;
 }
@@ -727,6 +731,7 @@ nav > * {
     font-size: 5vw;
     position: absolute;
     bottom: 0;
+    padding-bottom: 20px;
 }
 
 .project img{
@@ -758,10 +763,10 @@ nav > * {
     object-fit: cover;
     filter: brightness(1.0);
     padding-top: 10px;
-    overflow: visible;
 }
 
 .media_title{
+    font-family: "Luckiest Guy", cursive;
     font-size: 4vw;
     text-transform: uppercase;
     opacity: 0;
@@ -769,7 +774,7 @@ nav > * {
     z-index: 2;
 }
 
-.media_title.animate-slide-up {
+.media_title.animate_slide_up {
     animation: slideInUp 1s ease-out forwards;
 }
 
@@ -779,7 +784,7 @@ nav > * {
     opacity: 0;
 }
 
-.media_container.animate-slide-up {
+.media_container.animate_slide_up {
     animation: slideInUp 1s ease-out forwards;
     animation-delay: 0.3s;
 }
@@ -842,6 +847,43 @@ nav > * {
 
 .contact_card span:hover {
     transform: scale(1.2);
+}
+
+/* --- Flip Card Effect --- */
+.contact_card {
+    perspective: 1000px; /* Tạo không gian 3D */
+}
+
+.flip_inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.contact_card.is_flipped .flip_inner {
+    transform: rotateY(180deg);
+}
+
+.flip_front, .flip_back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden; /* Ẩn mặt sau khi xoay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+}
+
+.flip_back {
+    transform: rotateY(180deg);
+    background-color: #000;
+    flex-direction: column;
 }
 
 .footer{
@@ -947,7 +989,7 @@ nav > * {
     }
 
     /* Light Mode cho menu responsive */
-    body.light-mode .nav_container.active {
+    body.light_mode .nav_container.active {
         background-image: linear-gradient(180deg, #ebe8e8ff, #dbdadaff);
         background-color: rgba(255, 255, 255, 0.95);
     }
@@ -1028,7 +1070,7 @@ nav > * {
         margin-left: 50px;
     }
 
-    .hero_text .glitch-word:nth-of-type(2) {
+    .hero_text .glitch_word:nth-of-type(2) {
         margin-left: 40px; /* Tablet: Giảm thụt dòng */
     }
 
@@ -1164,20 +1206,20 @@ nav > * {
         margin-right: 50px;
     }
 
-    .hero_text .glitch-word:nth-of-type(2) {
+    .hero_text .glitch_word:nth-of-type(2) {
         margin-left: 20px; /* Mobile: Giảm thụt dòng tối đa */
     }
 
     /* Thu nhỏ đường kẻ trang trí trên mobile */
-    .hero_text .glitch-word:nth-of-type(1)::before,
-    .hero_text .glitch-word:nth-of-type(1)::after,
-    .hero_text .glitch-word:nth-of-type(2)::before,
-    .hero_text .glitch-word:nth-of-type(2)::after {
+    .hero_text .glitch_word:nth-of-type(1)::before,
+    .hero_text .glitch_word:nth-of-type(1)::after,
+    .hero_text .glitch_word:nth-of-type(2)::before,
+    .hero_text .glitch_word:nth-of-type(2)::after {
         height: 2px;
         bottom: -3px;
     }
-    .hero_text .glitch-word:nth-of-type(1)::after,
-    .hero_text .glitch-word:nth-of-type(2)::after {
+    .hero_text .glitch_word:nth-of-type(1)::after,
+    .hero_text .glitch_word:nth-of-type(2)::after {
         width: 15px;
     }
     
@@ -1310,7 +1352,7 @@ nav > * {
 }
 
 /* --- Scroll Down Arrow --- */
-#scroll-arrow-container {
+#scroll_arrow_container {
     position: fixed;
     bottom: 4vh;
     left: 50%;
@@ -1321,13 +1363,13 @@ nav > * {
     
 }
 
-#scroll-arrow-container img {
+#scroll_arrow_container img {
     width: 60px;
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
     animation: pulse-bounce 2s infinite ease-in-out;
 }
 
-#scroll-arrow-container.scrolled-to-bottom {
+#scroll_arrow_container.scrolled_to_bottom {
     transform: translateX(-50%) rotate(180deg);
 }
 

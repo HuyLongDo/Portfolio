@@ -1,6 +1,6 @@
     // Gọi hàm tải component
-    loadComponent('header-placeholder', 'header.html');
-    loadComponent('footer-placeholder', 'footer.html');
+    loadComponent('header_placeholder', 'header.html');
+    loadComponent('footer_placeholder', 'footer.html');
     
     // Hàm tải component (header/footer)
     function loadComponent(id, file) {
@@ -10,11 +10,11 @@
         document.getElementById(id).innerHTML = data;
         
         // Nếu là header thì kích hoạt lại sự kiện cho nút theme
-        if (id === 'header-placeholder') {
-            const themeBtn = document.getElementById('theme-toggle');
+        if (id === 'header_placeholder') {
+            const themeBtn = document.getElementById('theme_toggle');
             if(themeBtn) {
                 themeBtn.addEventListener('click', () => {
-                    document.body.classList.toggle('light-mode');
+                    document.body.classList.toggle('light_mode');
                 });
             }
 
@@ -49,10 +49,10 @@
             });
 
             // Xử lý scroll cho các mục nav
-            const navAbout = document.getElementById('nav-about');
-            const navProject = document.getElementById('nav-project');
-            const navHome = document.getElementById('nav-home');
-            const navContact = document.getElementById('nav-contact');
+            const navAbout = document.getElementById('nav_about');
+            const navProject = document.getElementById('nav_project');
+            const navHome = document.getElementById('nav_home');
+            const navContact = document.getElementById('nav_contact');
 
 
             if (navAbout) {
@@ -77,10 +77,10 @@
 
 
     // --- Logic cho Tab About/Skills ---
-    const tabAbout = document.getElementById('tab-about');
-    const tabSkills = document.getElementById('tab-skills');
-    const contentAbout = document.getElementById('about-text-content');
-    const contentSkills = document.getElementById('skills-content');
+    const tabAbout = document.getElementById('tab_about');
+    const tabSkills = document.getElementById('tab_skills');
+    const contentAbout = document.getElementById('about_text_content');
+    const contentSkills = document.getElementById('skills_content');
     if (tabAbout && tabSkills && contentAbout && contentSkills) {
         tabAbout.addEventListener('click', () => {
             tabAbout.classList.add('active');
@@ -89,9 +89,9 @@
             contentSkills.style.display = 'none';
             
             // Reset và chạy lại animation cho About
-            contentAbout.classList.remove('animate-active');
+            contentAbout.classList.remove('animate_active');
             void contentAbout.offsetWidth; // Trigger reflow
-            contentAbout.classList.add('animate-active');
+            contentAbout.classList.add('animate_active');
         });
         tabSkills.addEventListener('click', () => {
             tabSkills.classList.add('active');
@@ -100,15 +100,15 @@
             contentSkills.style.display = 'flex';
 
             // Reset và chạy lại animation cho Skills
-            contentSkills.classList.remove('animate-active');
+            contentSkills.classList.remove('animate_active');
             void contentSkills.offsetWidth;
-            contentSkills.classList.add('animate-active');
+            contentSkills.classList.add('animate_active');
         });
     }
 
     // --- Logic cho Skill Items (Hover/Click) ---
     const skillItems = document.querySelectorAll('.skill_item');
-    const skillText = document.getElementById('skill-text');
+    const skillText = document.getElementById('skill_text');
 
     if (skillItems.length > 0 && skillText) {
         const setActiveSkill = (index) => {
@@ -160,7 +160,7 @@
       }
 
 
-      // Effect font
+      // Effect font Cyberpunk
       // Map ký tự sang số theo yêu cầu
       const charMap = {
         'e': '3', 'E': '3',
@@ -210,7 +210,7 @@
       }
 
       // Lấy danh sách các từ cần đổi hiệu ứng
-      const words = document.querySelectorAll(".glitch-word");
+      const words = document.querySelectorAll(".glitch_word");
       // 1. Chạy ngay khi load trang (Hiệu ứng giải mã: Số -> Chữ)
       words.forEach(word => runHackerEffect(word, 'decode'));
       // 2. Chạy lại khi di chuột vào cả khối cha
@@ -238,10 +238,10 @@
             entries.forEach(entry => {  
                 if (entry.isIntersecting) {
                     // Khi home section xuất hiện -> Thêm class để chạy animation
-                    animatedElements.forEach(el => el.classList.add('animate-active'));
+                    animatedElements.forEach(el => el.classList.add('animate_active'));
                 } else {
                     // Khi home section biến mất -> Xóa class để reset animation
-                    animatedElements.forEach(el => el.classList.remove('animate-active'));
+                    animatedElements.forEach(el => el.classList.remove('animate_active'));
                 }
             });
         }, {
@@ -259,9 +259,9 @@
         const aboutObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    aboutAnimatedElements.forEach(el => el.classList.add('animate-active'));
+                    aboutAnimatedElements.forEach(el => el.classList.add('animate_active'));
                 } else {
-                    aboutAnimatedElements.forEach(el => el.classList.remove('animate-active'));
+                    aboutAnimatedElements.forEach(el => el.classList.remove('animate_active'));
                 }
             });
         }, { threshold: 0.1 });
@@ -277,9 +277,9 @@
         const projectObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    projectAnimatedElements.forEach(el => el.classList.add('animate-slide-up'));
+                    projectAnimatedElements.forEach(el => el.classList.add('animate_slide_up'));
                 } else {
-                    projectAnimatedElements.forEach(el => el.classList.remove('animate-slide-up'));
+                    projectAnimatedElements.forEach(el => el.classList.remove('animate_slide_up'));
                 }
             });
         }, { threshold: 0.1 });
@@ -295,9 +295,9 @@
         const mediaObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    mediaAnimatedElements.forEach(el => el.classList.add('animate-slide-up'));
+                    mediaAnimatedElements.forEach(el => el.classList.add('animate_slide_up'));
                 } else {
-                    mediaAnimatedElements.forEach(el => el.classList.remove('animate-slide-up'));
+                    mediaAnimatedElements.forEach(el => el.classList.remove('animate_slide_up'));
                 }
             });
         }, { threshold: 0.1 });
@@ -305,12 +305,53 @@
         mediaObserver.observe(mediaSection);
       }
 
+      // --- Flip Card & Link Logic (Contact Section) ---
+      const flipCards = document.querySelectorAll('.contact_card');
+
+      flipCards.forEach(card => {
+          if (card.querySelector('.flip_inner')) {
+              card.addEventListener('click', function() {
+                  // Check if the card is already flipped
+                  if (this.classList.contains('is_flipped')) {
+                      // If flipped, find the link and open it
+                      const socialLink = this.querySelector('.social_link');
+                      if (socialLink) {
+                          const type = socialLink.getAttribute('data-type');
+                          const id = socialLink.getAttribute('data-id');
+                          
+                          if (type === 'social') {
+                              const platform = socialLink.getAttribute('data-platform');
+                              const socialUrls = {
+                                  github: `https://github.com/${id}`,
+                                  linkedin: `https://linkedin.com/in/${id}`,
+                                  instagram: `https://instagram.com/${id}`
+                              };
+                              window.open(socialUrls[platform], '_blank', 'noopener,noreferrer');
+                          } else if (type === 'mail') {
+                              const domain = socialLink.getAttribute('data-domain');
+                              window.location.href = `mailto:${id}@${domain}`;
+                          } else if (type === 'discord') {
+                              window.open(`https://discord.com/users/${id}`, '_blank', 'noopener,noreferrer');
+                          }
+                      }
+                  } else {
+                      // If not flipped, just flip it
+                      this.classList.add('is_flipped');
+                  }
+              });
+              
+              card.addEventListener('mouseleave', function() {
+                  // Always flip back on mouse leave
+                  this.classList.remove('is_flipped');
+              });
+          }
+      });
+
       // --- Scroll Arrow Logic ---
-      const scrollArrowContainer = document.getElementById('scroll-arrow-container');
-      const footerPlaceholder = document.getElementById('footer-placeholder');
+      const scrollArrowContainer = document.getElementById('scroll_arrow_container');
+      const footerPlaceholder = document.getElementById('footer_placeholder');
       const sections = document.querySelectorAll('.home_section, .about_section, .projects_section, .media_section, .contact_section');
       let currentSectionIndex = 0;
-
     if (scrollArrowContainer && sections.length > 0 && footerPlaceholder) {
         // Observer để theo dõi section nào đang hiển thị trên màn hình
         const sectionObserver = new IntersectionObserver((entries) => {
@@ -329,7 +370,7 @@
 
         // 1. Click event
         scrollArrowContainer.addEventListener('click', () => {
-            if (scrollArrowContainer.classList.contains('scrolled-to-bottom')) {
+            if (scrollArrowContainer.classList.contains('scrolled_to_bottom')) {
                 // Nếu ở cuối, cuộn lên đầu
                 sections[0].scrollIntoView({ behavior: 'smooth' });
             } else {
@@ -347,7 +388,7 @@
         // 2. Observer để phát hiện khi tới footer
         const footerObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                scrollArrowContainer.classList.toggle('scrolled-to-bottom', entry.isIntersecting);
+                scrollArrowContainer.classList.toggle('scrolled_to_bottom', entry.isIntersecting);
             });
         }, { threshold: 0.1 });
 

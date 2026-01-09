@@ -615,7 +615,7 @@ nav > * {
 .about_topics{
     width: 93%;
     display: flex;
-    gap: 40px;
+    gap: 60px;
     text-transform: uppercase;
 }
 
@@ -689,6 +689,7 @@ nav > * {
     font-family: "Poppins", sans-serif; /* Dùng font thường cho dễ đọc */
     font-size: 1.5vw;
     text-transform: none;
+    line-height: 2;
     min-height: 3em; /* Giữ chiều cao cố định để tránh nhảy layout */
     color: inherit;
     padding-left:20px;
@@ -1179,7 +1180,7 @@ nav > * {
 
     .skill_description {
         font-size: 18px;
-        text-align: center;
+        text-align: left;
     }
 
     .projects_section{
@@ -1343,7 +1344,7 @@ nav > * {
 
     .skill_description {
         font-size: 14px;
-        text-align: center;
+        text-align: left;
     }
     
     .projects_section{

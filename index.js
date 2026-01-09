@@ -408,7 +408,7 @@
       let currentSectionIndex = 0;
 
       // --- Section Names ---
-      const sectionNames = ["BIO", "PROFILE", "PROJECT", "MEDIA", "AUDIO", "CONTACT"];
+      const sectionNames = ["BIO", "DATA", "PROJECT", "MEDIA", "AUDIO", "CONTACT"];
       const scrollSectionName = document.getElementById('scroll_section_name');
 
     if (scrollArrowContainer && sections.length > 0 && footerPlaceholder) {

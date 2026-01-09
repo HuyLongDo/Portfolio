@@ -1467,8 +1467,19 @@ nav > * {
     transform: translateX(-50%);
     z-index: 100;
     cursor: pointer;
-    transition: transform 0.4s ease;
-    
+    /* transition: transform 0.4s ease; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+#scroll_section_name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    color: white;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
 }
 
 #scroll_arrow_container img {
@@ -1477,8 +1488,12 @@ nav > * {
     animation: pulse-bounce 2s infinite ease-in-out;
 }
 
-#scroll_arrow_container.scrolled_to_bottom {
-    transform: translateX(-50%) rotate(180deg);
+#scroll_arrow_container .scroll_arrow_wrapper {
+    transition: transform 0.4s ease;
+}
+
+#scroll_arrow_container.scrolled_to_bottom .scroll_arrow_wrapper {
+    transform: rotate(180deg);
 }
 
 @keyframes pulse-bounce {

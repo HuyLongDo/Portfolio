@@ -406,6 +406,11 @@
       const footerPlaceholder = document.getElementById('footer_placeholder');
       const sections = document.querySelectorAll('.home_section, .about_section, .projects_section, .media_section, .audio_section, .contact_section');
       let currentSectionIndex = 0;
+
+      // --- Section Names ---
+      const sectionNames = ["BIO", "PROFILE", "PROJECT", "MEDIA", "AUDIO", "CONTACT"];
+      const scrollSectionName = document.getElementById('scroll_section_name');
+
     if (scrollArrowContainer && sections.length > 0 && footerPlaceholder) {
         // Observer để theo dõi section nào đang hiển thị trên màn hình
         const sectionObserver = new IntersectionObserver((entries) => {
@@ -415,6 +420,10 @@
                     const intersectingIndex = Array.from(sections).findIndex(sec => sec === entry.target);
                     if (intersectingIndex > -1) {
                         currentSectionIndex = intersectingIndex;
+                        // Update text nếu không phải đang ở footer
+                        if (scrollSectionName && !scrollArrowContainer.classList.contains('scrolled_to_bottom')) {
+                            scrollSectionName.innerText = sectionNames[currentSectionIndex];
+                        }
                     }
                 }
             });
@@ -442,7 +451,16 @@
         // 2. Observer để phát hiện khi tới footer
         const footerObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                scrollArrowContainer.classList.toggle('scrolled_to_bottom', entry.isIntersecting);
+                const isBottom = entry.isIntersecting;
+                scrollArrowContainer.classList.toggle('scrolled_to_bottom', isBottom);
+                
+                if (scrollSectionName) {
+                    if (isBottom) {
+                        scrollSectionName.innerText = "CONTACT";
+                    } else {
+                        scrollSectionName.innerText = sectionNames[currentSectionIndex];
+                    }
+                }
             });
         }, { threshold: 0.1 });
 

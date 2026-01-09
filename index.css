@@ -45,6 +45,7 @@ body.light_mode .home_section,
 body.light_mode .about_section,
 body.light_mode .projects_section,
 body.light_mode .media_section,
+body.light_mode .audio_section,
 body.light_mode .contact_section,
 body.light_mode .footer {
     background-color: #ffffff;
@@ -57,6 +58,7 @@ body.light_mode .sub_hero_text,
 body.light_mode .hero_text,
 body.light_mode .project_title,
 body.light_mode .media_title,
+body.light_mode .audio_title,
 body.light_mode .footer_title,
 body.light_mode .skills span,
 body.light_mode .about_text {
@@ -90,6 +92,12 @@ body.light_mode .skill_description p {
 /* Media section: Giữ màu chữ trắng vì ảnh nền tối */
 body.light_mode .media_section,
 body.light_mode .media_section span {
+    color: white;
+}
+
+/* Audio section: Giữ màu chữ trắng vì ảnh nền tối */
+body.light_mode .audio_section,
+body.light_mode .audio_section span {
     color: white;
 }
 
@@ -194,10 +202,18 @@ nav {
     justify-content: center;
     align-items: center;
     background: linear-gradient(180deg, #464545ff, #000000); /* Nền đen gradient */
-    padding: 15px 20px;
+    padding: 25px 20px;
     border-radius: 0 0 20px 20px;
     gap: 80px; /* Tạo khoảng cách cố định giữa các item */
     transition: all 0.3s ease; /* Hiệu ứng mượt khi mở menu */
+}
+
+.nav_actions {
+    position: absolute;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 nav > * {
@@ -241,10 +257,11 @@ nav > * {
 .nav_item {
     position: relative;
     cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .nav_name{
-    margin-left: 100px;
+    margin-left: 0;
 }
 
 .nav_item::after {
@@ -298,7 +315,7 @@ nav > * {
     border: none;
     border-radius: 15px;
     padding: 1px 20px;
-    cursor: pointer;
+    /* cursor: pointer; */
     transition: all 0.3s ease;
     overflow: hidden; /* Ẩn phần text khi đóng */
     opacity: 0; /* Ẩn ban đầu để chờ animation */
@@ -748,7 +765,7 @@ nav > * {
 .media_section{
     font-family: "Anton", sans-serif;
     width: 100%;
-    height: 100vh;
+    height: 90vh;
     padding: 2vw;
     margin-bottom: 1px;
     position: relative;
@@ -759,7 +776,7 @@ nav > * {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     object-fit: cover;
     filter: brightness(1.0);
     padding-top: 10px;
@@ -785,6 +802,50 @@ nav > * {
 }
 
 .media_container.animate_slide_up {
+    animation: slideInUp 1s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+.audio_section{
+    font-family: "Anton", sans-serif;
+    width: 100%;
+    height: 90vh;
+    padding: 2vw;
+    margin-bottom: 1px;
+    position: relative;
+}
+
+.audio_bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(1.0);
+    padding-top: 10px;
+}
+
+.audio_title{
+    font-family: "Luckiest Guy", cursive;
+    font-size: 4vw;
+    text-transform: uppercase;
+    opacity: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.audio_title.animate_slide_up {
+    animation: slideInUp 1s ease-out forwards;
+}
+
+.audio_container {
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+}
+
+.audio_container.animate_slide_up {
     animation: slideInUp 1s ease-out forwards;
     animation-delay: 0.3s;
 }
@@ -941,6 +1002,12 @@ nav > * {
         justify-content: space-between; /* Đẩy logo và hamburger ra 2 bên */
         gap: 5px;
         flex-wrap: wrap; /* Cho phép menu rớt dòng */
+    }
+
+    .nav_actions {
+        position: relative;
+        right: auto;
+        margin-left: auto;
     }
 
     .hamburger {
@@ -1141,6 +1208,27 @@ nav > * {
         font-size: 16px;
     }
 
+    .audio_section {
+        height: auto;
+        padding-top: 30px;
+        min-height: 60vh;
+        margin-bottom: -10px;
+    }
+
+    .audio_bg {
+        height: 100%;
+        padding-top: 30px;
+    }
+
+    .audio_container {
+        font-size: 18px; /* Set cứng size chữ */
+        margin: 20px;
+    }
+
+    .audio_text {
+        font-size: 16px;
+    }
+
     .contact_section {
         height: 80vh;
     }
@@ -1280,6 +1368,26 @@ nav > * {
     }
 
     .media_text {
+        font-size: 14px;
+    }
+
+    .audio_section {
+        height: auto; /* Chiều cao tự động theo nội dung */
+        min-height: 60vh;
+        margin-bottom: -10px;
+    }
+
+    .audio_bg  {
+        height: 100%;
+        padding-top: 0px;
+    }
+
+    .audio_container {
+        font-size: 16px;
+        margin: 15px;
+    }
+
+    .audio_text {
         font-size: 14px;
     }
 

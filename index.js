@@ -48,12 +48,48 @@
                 });
             });
 
+            // --- Hold Scroll Logic (Active Nav Item on Scroll) ---
+            const sectionMap = [
+                { navId: 'nav_home', sectionClass: '.home_section' },
+                { navId: 'nav_about', sectionClass: '.about_section' },
+                { navId: 'nav_project', sectionClass: '.projects_section' }
+            ];
+
+            const navObserverOptions = {
+                root: null,
+                rootMargin: '-50% 0px -50% 0px', // Kích hoạt khi section đi qua giữa màn hình
+                threshold: 0
+            };
+
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navItems.forEach(item => item.classList.remove('active'));
+                        
+                        const activeMap = sectionMap.find(item => {
+                            const section = document.querySelector(item.sectionClass);
+                            return section === entry.target;
+                        });
+
+                        if (activeMap) {
+                            const activeNav = document.getElementById(activeMap.navId);
+                            if (activeNav) activeNav.classList.add('active');
+                        }
+                    }
+                });
+            }, navObserverOptions);
+
+            sectionMap.forEach(item => {
+                const section = document.querySelector(item.sectionClass);
+                if (section) navObserver.observe(section);
+            });
+
+
             // Xử lý scroll cho các mục nav
             const navAbout = document.getElementById('nav_about');
             const navProject = document.getElementById('nav_project');
             const navHome = document.getElementById('nav_home');
             const navContact = document.getElementById('nav_contact');
-
 
             if (navAbout) {
                 navAbout.addEventListener('click', () => document.querySelector('.about_section').scrollIntoView({ behavior: 'smooth' }));
@@ -305,6 +341,24 @@
         mediaObserver.observe(mediaSection);
       }
 
+      // --- Hiệu ứng scroll slide Animation Audio Section ---
+      const audioSection = document.querySelector('.audio_section');
+      const audioAnimatedElements = document.querySelectorAll('.audio_title, .audio_container');
+
+      if (audioSection && audioAnimatedElements.length > 0) {
+        const audioObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    audioAnimatedElements.forEach(el => el.classList.add('animate_slide_up'));
+                } else {
+                    audioAnimatedElements.forEach(el => el.classList.remove('animate_slide_up'));
+                }
+            });
+        }, { threshold: 0.1 });
+
+        audioObserver.observe(audioSection);
+      }
+
       // --- Flip Card & Link Logic (Contact Section) ---
       const flipCards = document.querySelectorAll('.contact_card');
 
@@ -350,7 +404,7 @@
       // --- Scroll Arrow Logic ---
       const scrollArrowContainer = document.getElementById('scroll_arrow_container');
       const footerPlaceholder = document.getElementById('footer_placeholder');
-      const sections = document.querySelectorAll('.home_section, .about_section, .projects_section, .media_section, .contact_section');
+      const sections = document.querySelectorAll('.home_section, .about_section, .projects_section, .media_section, .audio_section, .contact_section');
       let currentSectionIndex = 0;
     if (scrollArrowContainer && sections.length > 0 && footerPlaceholder) {
         // Observer để theo dõi section nào đang hiển thị trên màn hình

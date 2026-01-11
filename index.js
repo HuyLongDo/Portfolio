@@ -341,6 +341,61 @@
         mediaObserver.observe(mediaSection);
       }
 
+      // --- Media Slider Logic ---
+      const mediaSlides = document.querySelectorAll('.media_slide');
+      const sliderDots = document.querySelectorAll('.slider_dot');
+      const mediaRows = document.querySelectorAll('.media_row');
+      let currentSlideIndex = 0;
+      let slideInterval;
+
+      if (mediaSlides.length > 0 && sliderDots.length > 0) {
+          // Hàm chuyển slide
+          const goToSlide = (index) => {
+              if (index >= mediaSlides.length) index = 0;
+              if (index < 0) index = mediaSlides.length - 1;
+              
+              currentSlideIndex = index;
+
+              mediaSlides.forEach(slide => slide.classList.remove('active'));
+              sliderDots.forEach(d => d.classList.remove('active'));
+              if (mediaRows.length > 0) mediaRows.forEach(r => r.classList.remove('active'));
+
+              mediaSlides[currentSlideIndex].classList.add('active');
+              sliderDots[currentSlideIndex].classList.add('active');
+              if (mediaRows.length > 0 && mediaRows[currentSlideIndex]) {
+                  mediaRows[currentSlideIndex].classList.add('active');
+              }
+          };
+
+          const startAutoPlay = () => {
+              if (slideInterval) clearInterval(slideInterval);
+              slideInterval = setInterval(() => {
+                  goToSlide(currentSlideIndex + 1);
+              }, 3000);
+          };
+
+          sliderDots.forEach(dot => {
+              dot.addEventListener('click', function() {
+                  const index = parseInt(this.getAttribute('data-index'));
+                  goToSlide(index);
+                  startAutoPlay();
+              });
+          });
+
+          // Add click event for Table Rows
+          if (mediaRows.length > 0) {
+              mediaRows.forEach(row => {
+                  row.addEventListener('click', function() {
+                      const index = parseInt(this.getAttribute('data-index'));
+                      goToSlide(index);
+                      startAutoPlay();
+                  });
+              });
+          }
+
+          startAutoPlay();
+      }
+
       // --- Hiệu ứng scroll slide Animation Audio Section ---
       const audioSection = document.querySelector('.audio_section');
       const audioAnimatedElements = document.querySelectorAll('.audio_title, .audio_container');

@@ -80,7 +80,7 @@
     
     <!-- About section -->
     <div class="about_section">
-      <img src="assets/img/bw_tea_bg.jpg" />
+      <img src="assets/img/v_bw_bg.jpg" class="about_bg" alt="About Background"/>
       <!-- <span class="about_span">WHO AM I?</span> -->
       <div class="about_content">
         <div class="about_topics">
@@ -205,7 +205,7 @@
                 </div>
                 <div class="project project3">
                     <span>03</span>
-                    <img src="assets/img/3.jpg" />
+                    <img src="assets/img/v.jpg" />
                 </div>
                 <div class="project project4">
                     <span>04</span>
@@ -213,7 +213,7 @@
                 </div>
                 <div class="project project5">
                     <span>05</span>
-                    <img src="assets/img/5.jpg" />
+                    <img style="object-position: 50% 30%;" src="assets/img/5.jpg" />
                 </div>
             </div>
         </div>
@@ -227,7 +227,39 @@
         <img src="assets/img/audio_bg_2.png" class="media_bg" alt="Media Background" />
         <span class="media_title">Achievements</span>
         <div class="media_container">
-          <div class="media_text">Update soon later</div>
+            <div class="media_content_wrapper">
+                <!-- Left: Slider -->
+                <div class="media_slider_block">
+                    <div class="media_slides">
+                        <img src="assets/img/1.jpg" class="media_slide active" alt="Slide 1" />
+                        <img src="assets/img/2.jpg" class="media_slide" alt="Slide 2" />
+                        <img src="assets/img/v.jpg" class="media_slide" alt="Slide 3" />
+                        <img src="assets/img/4.jpg" class="media_slide" alt="Slide 4" />
+                        <img src="assets/img/5.jpg" class="media_slide" alt="Slide 5" />
+                    </div>
+                    <div class="slider_dots_container">
+                        <span class="slider_dot active" data-index="0"></span>
+                        <span class="slider_dot" data-index="1"></span>
+                        <span class="slider_dot" data-index="2"></span>
+                        <span class="slider_dot" data-index="3"></span>
+                        <span class="slider_dot" data-index="4"></span>
+                    </div>
+                </div>
+
+                <!-- Separator -->
+                <div class="media_vertical_line"></div>
+
+                <!-- Right: Table -->
+                <div class="media_table_block">
+                    <table class="media_table">
+                        <tr class="media_row active" data-index="0"><td>2024 - Best UI Design Award</td></tr>
+                        <tr class="media_row" data-index="1"><td>2023 - Hackathon Winner</td></tr>
+                        <tr class="media_row" data-index="2"><td>2022 - Certified React Developer</td></tr>
+                        <tr class="media_row" data-index="3"><td>2021 - Open Source Contributor</td></tr>
+                        <tr class="media_row" data-index="4"><td>2020 - Top Rated Freelancer</td></tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
     <!-- End media section -->

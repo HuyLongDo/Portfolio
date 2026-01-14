@@ -599,7 +599,7 @@ nav > * {
     margin: 50px 40px;
     padding-top:50px;
     text-transform: uppercase;
-    font-size: 1.5vw;
+    font-size: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -633,7 +633,7 @@ nav > * {
 }
 
 .about_text{
-    font-size: 1.5vw;
+    font-size: 18px;
     width: 95%;
 }
 
@@ -648,7 +648,7 @@ nav > * {
     margin-left:10px;
     font-family: "Anton", sans-serif;
     text-transform: uppercase;
-    font-size: 2.2vw;
+    font-size: 32px;
     display: flex;
     flex-direction: column; /* Xếp dọc: List ở trên, Text ở dưới */
     gap: 2vh;
@@ -686,8 +686,8 @@ nav > * {
 }
 
 .skill_description {
-    font-family: "Poppins", sans-serif; /* Dùng font thường cho dễ đọc */
-    font-size: 1.5vw;
+    font-family: "Poppins", sans-serif; 
+    font-size: 18px;
     text-transform: none;
     line-height: 2;
     min-height: 3em; /* Giữ chiều cao cố định để tránh nhảy layout */

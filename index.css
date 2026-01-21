@@ -1002,6 +1002,68 @@ nav > * {
     animation-delay: 0.3s;
 }
 
+.audio_content_wrapper {
+    position: relative;
+    width: 100%;
+    height: 60vw;
+    margin-top: 50px;
+}
+
+.audio_story_block, 
+.audio_memory_block {
+    position: absolute;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+}
+
+.audio_story_block {
+    width: 73.5937029vw;
+    height: 39.083303vw;
+    clip-path: polygon(0% 0%, 100% 0%, 100% -6%, 44% 100%, 0% 100%);
+    left: -76px;
+    top: 0;
+    background: linear-gradient(to left, rgba(21, 132, 250, 0.5), rgba(0, 123, 255, 0));
+    backdrop-filter: blur(5px);
+}
+
+.audio_memory_block {
+    background: linear-gradient(to right, rgba(163, 135, 219, 0.5), rgba(0, 123, 255, 0));
+    backdrop-filter: blur(5px);
+    width: 73.2812031vw;
+    height: 39.083303vw;
+    clip-path: polygon(58.1% 0%, 100% 0%, 100% 100%, 5% 100%, 17% 76.88%);
+    top: 0;
+    right: -80px;
+}
+
+.audio_split_line {
+    width: 36.1458102vw;
+    height: 36.0937269vw;
+    background-image: url('assets/img/split_line.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 2.41666vw;
+    left: 28.3vw;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.audio_sub_title {
+    font-family: "Orbitron", sans-serif;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
 .contact_section{
     width: 100%;
     height: 80vh;
@@ -1407,6 +1469,29 @@ nav > * {
         font-size: 16px;
     }
 
+    .audio_content_wrapper {
+        display: flex;
+        height: auto;
+        gap: 2vw;
+    }
+
+    .audio_story_block, 
+    .audio_memory_block {
+        position: relative;
+        width: auto;
+        height: 40vw; /* Tablet: Giữ tỷ lệ ổn định */
+        top: auto;
+        left: auto;
+        right: auto;
+        clip-path: none;
+        flex: 1; /* Tablet: Trả về chia đều */
+        margin: 0;
+    }
+
+    .audio_split_line {
+        display: none;
+    }
+
     .contact_section {
         height: 80vh;
     }
@@ -1621,6 +1706,19 @@ nav > * {
 
     .audio_text {
         font-size: 14px;
+    }
+
+    .audio_content_wrapper {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .audio_story_block, 
+    .audio_memory_block {
+        width: 100%;
+        height: 60vw; /* Mobile: Tăng chiều cao theo tỷ lệ ngang để hiển thị đẹp hơn */
+        margin-bottom: 20px;
+        margin-right: 0; /* Mobile: Reset margin */
     }
 
     .contact_section {

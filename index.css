@@ -743,6 +743,53 @@ nav > * {
     padding: 1vw;
 }
 
+ /* --- Project Flip Effect --- */
+.project {
+    perspective: 1000px; /* Tạo chiều sâu 3D */
+}
+
+.project_flip_inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.project:hover .project_flip_inner {
+    transform: rotateY(180deg);
+}
+
+.project_flip_front, .project_flip_back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden; /* Ẩn mặt sau */
+    top: 0;
+    left: 0;
+}
+
+.project_flip_front {
+    z-index: 2;
+}
+
+.project_flip_back {
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+}
+
+.project_info {
+    z-index: 2;
+    text-align: center;
+    color: white;
+}
+
 .projects_container span{
     font-family: "Poppins", sans-serif;
     z-index: 2;

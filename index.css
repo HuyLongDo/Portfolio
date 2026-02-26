@@ -786,6 +786,7 @@ nav > * {
 
 .project_info {
     z-index: 2;
+    font-size: 1.5vw;
     text-align: center;
     color: white;
 }
@@ -796,7 +797,8 @@ nav > * {
     font-size: 5vw;
     position: absolute;
     bottom: 0;
-    padding-bottom: 20px;
+    padding-bottom: 50px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
 }
 
 .project img{
@@ -1050,57 +1052,57 @@ nav > * {
 }
 
 .audio_content_wrapper {
-    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
-    height: 60vw;
+    height: 60vh;
     margin-top: 50px;
 }
+/* 
+.audio_content_wrapper .audio_item:first-child {
+    align-self: flex-start;
+}
 
-.audio_story_block, 
-.audio_memory_block {
-    position: absolute;
-    border-radius: 15px;
+.audio_content_wrapper .audio_item:last-child {
+    align-self: flex-end;
+} */
+
+.audio_item {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-size: cover;
-    background-position: center;
-    padding: 20px;
+    cursor: pointer;
+    position: relative; /* Để định vị đĩa CD bên trong */
+    transition: transform 0.3s ease;
 }
 
-.audio_story_block {
-    width: 73.5937029vw;
-    height: 39.083303vw;
-    clip-path: polygon(0% 0%, 100% 0%, 100% -6%, 44% 100%, 0% 100%);
-    left: -76px;
-    top: 0;
-    background: linear-gradient(to left, rgba(21, 132, 250, 0.5), rgba(0, 123, 255, 0));
-    backdrop-filter: blur(5px);
+.audio_item:hover {
+    transform: scale(1.2);
 }
 
-.audio_memory_block {
-    background: linear-gradient(to right, rgba(163, 135, 219, 0.5), rgba(0, 123, 255, 0));
-    backdrop-filter: blur(5px);
-    width: 73.2812031vw;
-    height: 39.083303vw;
-    clip-path: polygon(58.1% 0%, 100% 0%, 100% 100%, 5% 100%, 17% 76.88%);
-    top: 0;
-    right: -80px;
-}
-
-.audio_split_line {
-    width: 36.1458102vw;
-    height: 36.0937269vw;
-    background-image: url('assets/img/split_line.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+.audio_cd_image {
     position: absolute;
-    top: 2.41666vw;
-    left: 28.3vw;
-    pointer-events: none;
-    z-index: 5;
+    top: 50%;
+    left: 50%;
+    width: 35vw; /* Kích thước đĩa */
+    height: 35vw;
+    object-fit: contain;
+    z-index: 1; /* Nằm dưới chữ */
+    opacity: 0.4; /* Làm mờ để không quá nổi bật */
+    animation: spin 20s linear infinite; /* Áp dụng animation xoay */
 }
+
+.audio_cd_film {
+    margin-top: -4vw; /* Nhích lên */
+    margin-left: -4vw; /* Nhích qua trái */
+}
+
+.audio_cd_record {
+    margin-top: 4vw; /* Nhích xuống */
+    margin-left: 4vw; /* Nhích qua phải */
+}
+
 
 .audio_sub_title {
     font-family: "Orbitron", sans-serif;
@@ -1108,7 +1110,15 @@ nav > * {
     margin-bottom: 15px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    position: relative; /* Đảm bảo chữ luôn nằm trên */
+    z-index: 2;
+}
+
+/* --- Animation xoay tròn --- */
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .contact_section{
@@ -1519,24 +1529,24 @@ nav > * {
     .audio_content_wrapper {
         display: flex;
         height: auto;
-        gap: 2vw;
+        flex-direction: column;
+        gap: 50px;
+        padding: 50px 0;
     }
 
-    .audio_story_block, 
-    .audio_memory_block {
-        position: relative;
-        width: auto;
-        height: 40vw; /* Tablet: Giữ tỷ lệ ổn định */
-        top: auto;
-        left: auto;
-        right: auto;
-        clip-path: none;
-        flex: 1; /* Tablet: Trả về chia đều */
-        margin: 0;
+    .audio_content_wrapper .audio_item {
+        align-self: center;
     }
 
-    .audio_split_line {
-        display: none;
+    /* Fix: Audio section on tablet */
+    .audio_item {
+        /* Đặt chiều cao tối thiểu để khối không bị co lại, tạo không gian cho đĩa CD */
+        min-height: 35vw;
+    }
+    .audio_cd_image {
+        /* Giảm kích thước đĩa CD để phù hợp với bố cục dọc */
+        width: 30vw;
+        height: 30vw;
     }
 
     .contact_section {

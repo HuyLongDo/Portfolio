@@ -1101,8 +1101,8 @@ nav > * {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 35vw; /* Kích thước đĩa */
-    height: 35vw;
+    width: 25vw; /* Kích thước đĩa */
+    height: 25vw;
     object-fit: contain;
     z-index: 1; /* Nằm dưới chữ */
     opacity: 0.4; /* Làm mờ để không quá nổi bật */

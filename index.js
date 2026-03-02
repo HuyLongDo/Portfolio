@@ -52,7 +52,9 @@
             const sectionMap = [
                 { navId: 'nav_home', sectionClass: '.home_section' },
                 { navId: 'nav_about', sectionClass: '.about_section' },
-                { navId: 'nav_project', sectionClass: '.projects_section' }
+                { navId: 'nav_project', sectionClass: '.projects_section' },
+                { navId: 'nav_media', sectionClass: '.media_section' },
+                { navId: 'nav_audio', sectionClass: '.audio_section' }
             ];
 
             const navObserverOptions = {
@@ -89,6 +91,8 @@
             const navAbout = document.getElementById('nav_about');
             const navProject = document.getElementById('nav_project');
             const navHome = document.getElementById('nav_home');
+            const navMedia = document.getElementById('nav_media');
+            const navAudio = document.getElementById('nav_audio');
             const navContact = document.getElementById('nav_contact');
 
             if (navAbout) {
@@ -101,6 +105,14 @@
             
             if (navHome) {
                 navHome.addEventListener('click', () => document.querySelector('.home_section').scrollIntoView({ behavior: 'smooth' }));
+            }
+
+            if (navMedia) {
+                navMedia.addEventListener('click', () => document.querySelector('.media_section').scrollIntoView({ behavior: 'smooth' }));
+            }
+
+            if (navAudio) {
+                navAudio.addEventListener('click', () => document.querySelector('.audio_section').scrollIntoView({ behavior: 'smooth' }));
             }
 
             if (navContact) {

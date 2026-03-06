@@ -119,6 +119,16 @@
                 navContact.addEventListener('click', () => document.querySelector('.contact_section').scrollIntoView({ behavior: 'smooth' }));
             }                
         }
+
+        // scroll footer
+        if (id === 'footer_placeholder') {
+            const footerSpans = document.querySelectorAll('.footer_nav span');
+            footerSpans.forEach(span => {
+                span.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+        }
         })
         .catch(error => console.error('Error loading component:', error));
     }
